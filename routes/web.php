@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Livewire\Admin\Admin;
+use App\Http\Livewire\Customer\Customer;
+use App\Http\Livewire\Home;
+use App\Http\Livewire\ServiceProvider\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/',Home::class)->name('home');
+
+// For Admin
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-admin'])->group(function () {
+    Route::get('/admin/dashboard', Admin::class)->name('admin.dashboard');
+});
+
+// For Service Provider
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-service-provider'])->group(function () {
+    Route::get('/service-provider/dashboard', ServiceProvider::class)->name('service-provider.dashboard');
+});
+
+// For Customer
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/customer/dashboard', Customer::class)->name('customer.dashboard');
 });
