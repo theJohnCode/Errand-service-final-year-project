@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Livewire\Admin\Admin;
+use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\ServiceCategory;
 use App\Http\Livewire\ServiceProvider\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +23,12 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 Route::get('/',Home::class)->name('home');
+Route::get('/service-categories',ServiceCategory::class)->name('home.service_categories');
 
 // For Admin
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-admin'])->group(function () {
     Route::get('/admin/dashboard', Admin::class)->name('admin.dashboard');
+    Route::get('/admin/service-categories',AdminServiceCategory::class)->name('admin.service_categories');
 });
 
 // For Service Provider
