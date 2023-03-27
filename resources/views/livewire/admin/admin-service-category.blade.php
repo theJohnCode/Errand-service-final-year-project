@@ -1,9 +1,14 @@
 <div>
     <style>
-        nav svg{
+        nav svg {
             height: 20px;
         }
-        nav .hidden{
+
+        nav div.flex {
+            display: none !important;
+        }
+
+        nav .hidden {
             display: block !important;
         }
     </style>
@@ -28,26 +33,44 @@
                 <div class="container">
                     <div class="row portfolioContainer">
                         <div class="col-md-12 profile1">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Image</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($serviceCategories as $index=>$serviceCategory)
-                                        <tr>
-                                            <td>{{ $index+1 }}</td>
-                                            <td>{{ $serviceCategory->name }}</td>
-                                            <td>{{ $serviceCategory->slug }}</td>
-                                            <td><image src="{{ asset('images/categories/' . $serviceCategory->image) }}" width="50" height="50"></image></td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            All Service Categories
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="{{ route('admin.add_service') }}" class="btn btn-primary pull-right">Add New</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Slug</th>
+                                                <th>Image</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($serviceCategories as $index=>$serviceCategory)
+                                            <tr>
+                                                <td>{{ $index+1 }}</td>
+                                                <td>{{ $serviceCategory->name }}</td>
+                                                <td>{{ $serviceCategory->slug }}</td>
+                                                <td>
+                                                    <image
+                                                        src="{{ asset('images/categories/' . $serviceCategory->image) }}"
+                                                        width="50" height="50"></image>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {{ $serviceCategories->links() }}
