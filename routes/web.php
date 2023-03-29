@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Admin\Admin;
 use App\Http\Livewire\Admin\AdminAddServiceCategory;
+use App\Http\Livewire\Admin\AdminEditServiceCategory;
 use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\Home;
@@ -31,6 +32,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/dashboard', Admin::class)->name('admin.dashboard');
     Route::get('/admin/service-categories',AdminServiceCategory::class)->name('admin.service_categories');
     Route::get('/admin/service-categories/add',AdminAddServiceCategory::class)->name('admin.add_service');
+    Route::get('/admin/service-categories/edit/{category_id}',AdminEditServiceCategory::class)->name('admin.edit_service');
 });
 
 // For Service Provider

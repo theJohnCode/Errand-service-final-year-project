@@ -52,6 +52,7 @@
                                                 <th>Name</th>
                                                 <th>Slug</th>
                                                 <th>Image</th>
+                                                <th>Control</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,6 +65,13 @@
                                                     <image
                                                         src="{{ asset('images/categories/' . $serviceCategory->image) }}"
                                                         width="50" height="50"></image>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.edit_service',['category_id'=>$serviceCategory->id]) }}">
+                                                        <i class="fa fa-edit fa-2x"></i>
+                                                    </a>
+                                                    <a href="#" onclick="confirm('Are you sure you want to delete this service?') || event.stopImmediatePropagation()"
+                                                        wire:click.prevent="deleteServiceCategory({{ $serviceCategory->id }})"><i class="fa fa-trash fa-2x"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
