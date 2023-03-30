@@ -67,6 +67,9 @@
                                                         width="50" height="50"></image>
                                                 </td>
                                                 <td>
+                                                    <a href="{{ route('admin.service_by_category',['category_slug'=>$serviceCategory->slug]) }}">
+                                                        <i class="fa fa-list fa-2x"></i>
+                                                    </a>
                                                     <a href="{{ route('admin.edit_service',['category_id'=>$serviceCategory->id]) }}">
                                                         <i class="fa fa-edit fa-2x"></i>
                                                     </a>

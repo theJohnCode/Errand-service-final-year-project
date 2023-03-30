@@ -65,41 +65,6 @@ class ServiceCategorySeeder extends Seeder
                     'slug' => 'ac',
                     'image' => '1521969345.png'
                 ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
-                [
-                    'name' => 'AC',
-                    'slug' => 'ac',
-                    'image' => '1521969345.png'
-                ],
             ]
         );
     }

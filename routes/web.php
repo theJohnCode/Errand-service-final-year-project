@@ -3,9 +3,12 @@
 use App\Http\Livewire\Admin\Admin;
 use App\Http\Livewire\Admin\AdminAddServiceCategory;
 use App\Http\Livewire\Admin\AdminEditServiceCategory;
+use App\Http\Livewire\Admin\AdminServices;
+use App\Http\Livewire\Admin\AdminServiceByCategory;
 use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\ServiceByCategory;
 use App\Http\Livewire\ServiceCategory;
 use App\Http\Livewire\ServiceProvider\ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::get('/',Home::class)->name('home');
 Route::get('/service-categories',ServiceCategory::class)->name('home.service_categories');
+Route::get('/{category_slug}/service',ServiceByCategory::class)->name('home.service_by_category');
 
 // For Admin
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-admin'])->group(function () {
@@ -33,6 +37,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/service-categories',AdminServiceCategory::class)->name('admin.service_categories');
     Route::get('/admin/service-categories/add',AdminAddServiceCategory::class)->name('admin.add_service');
     Route::get('/admin/service-categories/edit/{category_id}',AdminEditServiceCategory::class)->name('admin.edit_service');
+    Route::get('/admin/all-services',AdminServices::class)->name('admin.all_services');
+    Route::get('/admin/{category_slug}/service',AdminServiceByCategory::class)->name('admin.service_by_category');
 });
 
 // For Service Provider
