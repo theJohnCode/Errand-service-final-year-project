@@ -40,7 +40,7 @@
                                             {{ $category_name }}
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="#" class="btn btn-primary pull-right">Add New</a>
+                                            <a href="{{ route('admin.add_service') }}" class="btn btn-primary pull-right">Add New</a>
                                         </div>
                                     </div>
                                 </div>
@@ -80,10 +80,11 @@
                                                     </td>
                                                     <td>{{ $service->created_at }}</td>
                                                     <td>
-                                                        <a href="">
+                                                        <a href="{{ route('admin.edit_service',['service_id'=>$service->id]) }}">
                                                             <i class="fa fa-edit fa-2x"></i>
                                                         </a>
-                                                        <a href="#"><i class="fa fa-trash fa-2x"></i></a>
+                                                        <a href="#" onclick="confirm('Are you sure you want to delete this service?') ||
+                                                            event.stopImmediatePropagation()" wire:click.prevent="deleteService({{ $service->id }})"><i class="fa fa-trash fa-2x"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

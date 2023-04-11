@@ -25,6 +25,7 @@ class CreateServicesTable extends Migration
             $table->enum('discount_type',['fixed','percent'])->nullable();
             $table->string('image')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->boolean('featured')->default(false);
             $table->longText('description')->nullable();
             $table->longText('inclusion')->nullable();
             $table->longText('exclusion')->nullable();

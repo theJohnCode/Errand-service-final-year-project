@@ -21,7 +21,7 @@ class ServiceFactory extends Factory
             'name' => $service_name,
             'slug' => $slug,
             'tagline' => $this->faker->text(20),
-            'service_category_id' => $this->faker->numberBetween(1,20),
+            'service_category_id' => $this->faker->numberBetween(1,10),
             'price' => $this->faker->numberBetween(200,560),
             'image' => $image_name,
             'thumbnail' => $image_name,

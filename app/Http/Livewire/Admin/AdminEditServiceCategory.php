@@ -16,6 +16,7 @@ class AdminEditServiceCategory extends Component
     public $category_id;
     public $name;
     public $slug;
+    public $featured;
     public $image;
     public $newImage;
 
@@ -24,6 +25,7 @@ class AdminEditServiceCategory extends Component
         $this->category_id = $serviceCategory->id;
         $this->name = $serviceCategory->name;
         $this->slug = $serviceCategory->slug;
+        $this->featured = $serviceCategory->featured;
         $this->image = $serviceCategory->image;
     }
 
@@ -59,6 +61,7 @@ class AdminEditServiceCategory extends Component
         $serviceCategory = ServiceCategory::findOrFail($this->category_id);
         $serviceCategory->name = $this->name;
         $serviceCategory->slug = $this->slug;
+        $serviceCategory->featured = $this->featured;
 
         if ($this->newImage){
             Storage::disk('public_uploads')->delete('/categories/'.$this->image);

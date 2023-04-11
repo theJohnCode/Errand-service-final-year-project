@@ -32,7 +32,7 @@
                             @foreach($serviceCategory->services as $service)
                             <div class="col-xs-6 col-sm-4 col-md-3 nature hsgrids"
                                  style="padding-right: 5px;padding-left: 5px;">
-                                <a class="g-list" href="#">
+                                <a class="g-list" href="{{ route('home.service_details',['service_id'=>$service->id]) }}">
                                     <div class="img-hover">
                                         <img src="{{ asset('images/services/thumbnails/'. $service->thumbnail) }}" alt="{{ $service->name }}"
                                              class="img-responsive">
