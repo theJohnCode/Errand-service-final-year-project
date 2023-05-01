@@ -11,13 +11,17 @@ use App\Http\Livewire\Admin\AdminServices;
 use App\Http\Livewire\Admin\AdminServiceByCategory;
 use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Admin\AdminSlider;
+use App\Http\Livewire\ChangeLocation;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\ServiceByCategory;
 use App\Http\Livewire\ServiceCategory;
 use App\Http\Livewire\ServiceDetails;
+use App\Http\Livewire\ServiceProvider\EditServiceProviderProfile;
 use App\Http\Livewire\ServiceProvider\ServiceProvider;
 use App\Http\Controllers\SearchService;
+
+use App\Http\Livewire\ServiceProvider\ServiceProviderProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +45,7 @@ Route::get('/service/{service_slug}',ServiceDetails::class)->name('home.service_
 
 Route::get('/autocomplete',[SearchService::class,'autocomplete'])->name('home.autocomplete');
 Route::post('/search-service',[SearchService::class,'search'])->name('home.search_service');
+Route::get('/change-location',ChangeLocation::class)->name('home.change_location');
 
 // For Admin
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-admin'])->group(function () {
@@ -63,6 +68,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 // For Service Provider
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-service-provider'])->group(function () {
     Route::get('/service-provider/dashboard', ServiceProvider::class)->name('service-provider.dashboard');
+    Route::get('/service-provider/profile', ServiceProviderProfile::class)->name('service-provider.profile');
+    Route::get('/service-provider/profile/edit', EditServiceProviderProfile::class)->name('service-provider.edit_profile');
 });
 
 // For Customer

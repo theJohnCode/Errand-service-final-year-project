@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\ServiceProviderProfile;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +16,7 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
     public function create(array $input)
@@ -28,14 +29,20 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        $registeras = $input['registeras'] === 'SVP' ? 'SVP':'CST';
+        $register_as = $input['register_as'] === 'SVP' ? 'SVP' : 'CST';
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => Hash::make($input['password']),
-            'registeras' => $registeras,
+            'utype' => $register_as,
         ]);
+
+        if ($register_as === 'SVP') {
+            ServiceProviderProfile::create(['user_id' => $user->id]);
+        }
+
+        return $user;
     }
 }

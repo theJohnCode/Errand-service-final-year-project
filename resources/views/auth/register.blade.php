@@ -123,9 +123,10 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="registeras" class="col-md-4 col-form-label text-md-right">Register As</label>
+                                    <label for="register_as" class="col-md-4 col-form-label text-md-right">Register As</label>
                                     <div class="col-md-6">
-                                        <select id="registeras" name="registeras" class="form-control" required="">
+                                        <select id="register_as" name="register_as" class="form-control" required="">
+                                            <option>Select Register As :</option>
                                             <option value="SVP">Service Provider</option>
                                             <option value="CST">Customer</option>
                                         </select>
