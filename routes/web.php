@@ -11,7 +11,9 @@ use App\Http\Livewire\Admin\AdminServices;
 use App\Http\Livewire\Admin\AdminServiceByCategory;
 use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Admin\AdminSlider;
+use App\Http\Livewire\Admin\Contacts;
 use App\Http\Livewire\ChangeLocation;
+use App\Http\Livewire\ContactUs;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\ServiceByCategory;
@@ -46,6 +48,7 @@ Route::get('/service/{service_slug}',ServiceDetails::class)->name('home.service_
 Route::get('/autocomplete',[SearchService::class,'autocomplete'])->name('home.autocomplete');
 Route::post('/search-service',[SearchService::class,'search'])->name('home.search_service');
 Route::get('/change-location',ChangeLocation::class)->name('home.change_location');
+Route::get('/contactus',ContactUs::class)->name('home.contactus');
 
 // For Admin
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-admin'])->group(function () {
@@ -63,6 +66,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/sliders',AdminSlider::class)->name('admin.slider');
     Route::get('/admin/sliders/add',AdminAddSlider::class)->name('admin.add_slider');
     Route::get('/admin/sliders/edit/{slider_id}',AdminEditSlider::class)->name('admin.edit_slider');
+
+    Route::get('/admin/contacts',Contacts::class)->name('admin.contacts');
 });
 
 // For Service Provider

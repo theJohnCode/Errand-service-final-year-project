@@ -111,13 +111,8 @@
                                 <li><a href="service-details/kitchen-deep-cleaning.html">Kitchen Deep Cleaning </a></li>
                             </ul>
                         </li>
-                        <li> <a href="#">Special Services</a>
-                            <ul class="drop-down one-column hover-fade">
-                                <li><a href="servicesbycategory/16.html">Document Services</a></li>
-                                <li><a href="servicesbycategory/15.html">Cars &amp; Bikes</a></li>
-                                <li><a href="servicesbycategory/17.html">Movers &amp; Packers </a></li>
-                                <li><a href="servicesbycategory/18.html">Home Automation</a></li>
-                            </ul>
+                        <li>
+                            <a href="{{ route('home.contactus') }}">Contact Us</a>
                         </li>
 
                         @if(Route::has('login'))
@@ -129,6 +124,7 @@
                                             <li><a href="{{ route('admin.service_categories') }}">Service Categories</a></li>
                                             <li><a href="{{ route('admin.all_services') }}">All Services</a></li>
                                             <li><a href="{{ route('admin.slider') }}">Manage Sliders</a></li>
+                                            <li><a href="{{ route('admin.contacts') }}">All Contacts</a></li>
                                             <li><a href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                                             </li>
