@@ -13,7 +13,18 @@ class ServiceCategory extends Model
 
     protected $guarded = [];
 
-    public function services(){
+    public function services()
+    {
         return $this->hasMany(Service::class);
+    }
+
+    public function children()
+    {
+        return $this->hasMany(ServiceCategory::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'parent_id');
     }
 }

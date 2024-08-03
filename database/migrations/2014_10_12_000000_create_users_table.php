@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +24,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->string('utype')->default('CST');
+            $table->enum('utype', [
+                UserTypeEnum::ERRAND_RUNNER,
+                UserTypeEnum::ERRAND_CLIENT,
+                UserTypeEnum::ADMIN,
+            ])->default(UserTypeEnum::ERRAND_RUNNER);
             $table->timestamps();
         });
     }

@@ -40,38 +40,38 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/',Home::class)->name('home');
-Route::get('/service-categories',ServiceCategory::class)->name('home.service_categories');
-Route::get('/{category_slug}/service',ServiceByCategory::class)->name('home.service_by_category');
-Route::get('/service/{service_slug}',ServiceDetails::class)->name('home.service_details');
+Route::get('/', Home::class)->name('home');
+Route::get('/service-categories', ServiceCategory::class)->name('home.service_categories');
+Route::get('/{category_slug}/service', ServiceByCategory::class)->name('home.service_by_category');
+Route::get('/service/{service_slug}', ServiceDetails::class)->name('home.service_details');
 
-Route::get('/autocomplete',[SearchService::class,'autocomplete'])->name('home.autocomplete');
-Route::post('/search-service',[SearchService::class,'search'])->name('home.search_service');
-Route::get('/change-location',ChangeLocation::class)->name('home.change_location');
-Route::get('/contactus',ContactUs::class)->name('home.contactus');
+Route::get('/autocomplete', [SearchService::class, 'autocomplete'])->name('home.autocomplete');
+Route::post('/search-service', [SearchService::class, 'search'])->name('home.search_service');
+Route::get('/change-location', ChangeLocation::class)->name('home.change_location');
+Route::get('/contactus', ContactUs::class)->name('home.contactus');
 
 // For Admin
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-admin'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-admin'])->group(function () {
     Route::get('/admin/dashboard', Admin::class)->name('admin.dashboard');
 
-    Route::get('/admin/service-categories',AdminServiceCategory::class)->name('admin.service_categories');
-    Route::get('/admin/service-categories/add',AdminAddServiceCategory::class)->name('admin.add_service_category');
-    Route::get('/admin/service-categories/edit/{category_id}',AdminEditServiceCategory::class)->name('admin.edit_service_category');
+    Route::get('/admin/service-categories', AdminServiceCategory::class)->name('admin.service_categories');
+    Route::get('/admin/service-categories/add', AdminAddServiceCategory::class)->name('admin.add_service_category');
+    Route::get('/admin/service-categories/edit/{category_id}', AdminEditServiceCategory::class)->name('admin.edit_service_category');
 
-    Route::get('/admin/all-services',AdminServices::class)->name('admin.all_services');
-    Route::get('/admin/{category_slug}/service',AdminServiceByCategory::class)->name('admin.service_by_category');
-    Route::get('/admin/services/add',AdminAddService::class)->name('admin.add_service');
-    Route::get('/admin/services/edit/{service_id}',AdminEditService::class)->name('admin.edit_service');
+    Route::get('/admin/all-services', AdminServices::class)->name('admin.all_services');
+    Route::get('/admin/{category_slug}/service', AdminServiceByCategory::class)->name('admin.service_by_category');
+    Route::get('/admin/services/add', AdminAddService::class)->name('admin.add_service');
+    Route::get('/admin/services/edit/{service_id}', AdminEditService::class)->name('admin.edit_service');
 
-    Route::get('/admin/sliders',AdminSlider::class)->name('admin.slider');
-    Route::get('/admin/sliders/add',AdminAddSlider::class)->name('admin.add_slider');
-    Route::get('/admin/sliders/edit/{slider_id}',AdminEditSlider::class)->name('admin.edit_slider');
+    Route::get('/admin/sliders', AdminSlider::class)->name('admin.slider');
+    Route::get('/admin/sliders/add', AdminAddSlider::class)->name('admin.add_slider');
+    Route::get('/admin/sliders/edit/{slider_id}', AdminEditSlider::class)->name('admin.edit_slider');
 
-    Route::get('/admin/contacts',Contacts::class)->name('admin.contacts');
+    Route::get('/admin/contacts', Contacts::class)->name('admin.contacts');
 });
 
 // For Service Provider
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified','auth-service-provider'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-service-provider'])->group(function () {
     Route::get('/service-provider/dashboard', ServiceProvider::class)->name('service-provider.dashboard');
     Route::get('/service-provider/profile', ServiceProviderProfile::class)->name('service-provider.profile');
     Route::get('/service-provider/profile/edit', EditServiceProviderProfile::class)->name('service-provider.edit_profile');
