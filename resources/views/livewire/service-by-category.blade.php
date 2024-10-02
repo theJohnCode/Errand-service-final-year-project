@@ -42,15 +42,21 @@
                                             <h3>{{ $service->name }}</h3>
                                             <hr class="separator">
                                             <p>{{ $service->tagline }}</p>
-                                            @if (auth()->id() !== $service->postedBy->id)
+                                            @if (auth()->id() !== $service->postedBy->id && auth()->user()->utype == 'ERR')
                                                 <div class="content-btn">
                                                     <a href="{{ URL('errandify', $service->postedBy) }}"
                                                         class="btn btn-primary">Book Now
                                                     </a>
                                                 </div>
+                                            @else
+                                                <div class="content-btn">
+                                                    <a href="{{ route('home.service_details', ['service_slug' => $service->slug]) }}"
+                                                        class="btn btn-primary">View
+                                                    </a>
+                                                </div>
                                             @endif
 
-                                            <div class="price"><span>&#36;</span><b>From</b>{{ $service->price }}
+                                            <div class="price"><span>&#8358;</span><b>From</b>{{ $service->price }}
                                             </div>
                                         </div>
                                     </a>

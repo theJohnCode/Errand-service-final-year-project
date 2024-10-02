@@ -113,11 +113,24 @@
                                             <h3>{{ $featured_service->name }}</h3>
                                             <hr class="separator">
                                             <p>{{ $featured_service->tagline }}</p>
-                                            <div class="content-btn"><a
-                                                    href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
-                                                    class="btn btn-primary">Book Now</a></div>
+
+                                            @if (auth()->id() !== $featured_service->postedBy->id && auth()->user()->utype == 'ERR')
+                                                <div class="content-btn">
+                                                    <a href="{{ URL('errandify', $featured_service->postedBy) }}"
+                                                        class="btn btn-primary">Book Now
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="content-btn">
+                                                    <a href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
+                                                        class="btn btn-primary">View
+                                                    </a>
+                                                </div>
+                                            @endif
+
                                             <div class="price">
-                                                <span>&#36;</span><b>From</b>{{ $featured_service->price }}</div>
+                                                <span>&#8358;</span><b>From</b>{{ $featured_service->price }}
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -136,7 +149,7 @@
                     <div class="row">
                         <div class="col-md-4 ">
                             <div class="services-lines-info">
-                                <h2>WELCOME TO DIVERSIFIED</h2>
+                                <h2>WELCOME TO {{ strtoupper(config('app.name')) }}</h2>
                                 <p class="lead">
                                     Book best services at one place.
                                     <span class="line"></span>
@@ -198,11 +211,21 @@
                                     <h3>{{ $appliance_service->name }}</h3>
                                     <hr class="separator">
                                     <p>{{ $appliance_service->tagline }}</p>
-                                    <div class="content-btn">
-                                        <a href="{{ route('home.service_details', ['service_slug' => $appliance_service->slug]) }}"
-                                            class="btn btn-primary">Book Now</a>
-                                    </div>
-                                    <div class="price"><span>&#36;</span><b>From</b>{{ $appliance_service->price }}
+                                    @if (auth()->id() !== $appliance_service->postedBy->id && auth()->user()->utype == 'ERR')
+                                        <div class="content-btn">
+                                            <a href="{{ URL('errandify', $appliance_service->postedBy) }}"
+                                                class="btn btn-primary">Book Now
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="content-btn">
+                                            <a href="{{ route('home.service_details', ['service_slug' => $appliance_service->slug]) }}"
+                                                class="btn btn-primary">View
+                                            </a>
+                                        </div>
+                                    @endif
+                                
+                                    <div class="price"><span>&#8358;</span><b>From</b>{{ $appliance_service->price }}
                                     </div>
                                 </div>
                             </a>

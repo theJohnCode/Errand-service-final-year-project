@@ -61,7 +61,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 // For Service Provider
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-service-provider'])->group(function () {
-    Route::get('/service-provider/services/add', AdminAddService::class)->name('admin.add_service');
+    Route::get('/service-provider/services/add', AdminAddService::class)->name('service-provider.add_service');
     Route::get('/service-provider/services/edit/{service_id}', AdminEditService::class)->name('admin.edit_service');
     Route::get('/service-provider/dashboard', ServiceProvider::class)->name('service-provider.dashboard');
     Route::get('/service-provider/profile', ServiceProviderProfile::class)->name('service-provider.profile');

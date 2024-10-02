@@ -41,33 +41,23 @@
                 </div>
             </div>
         </div>
-        <!-- Info Head End -->
-
-        <!-- Header Start -->
-
+     
         @livewire('header-component')
-        <!-- Header End -->
-
-        <!-- LiveWire Start -->
-        {{--
-        <livewire:home /> --}}
+     
         {{ $slot }}
-        <!-- LiveWire End -->
-
-        <!-- Footer Start -->
+   
         <footer id="footer" class="footer-v1">
-
             <div class="footer-down">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <ul class="nav-footer">
+                            {{-- <ul class="nav-footer">
                                 <li><a href="#">About Us</a> </li>
                                 <li><a href="#">Contact Us</a></li>
                                 <li><a href="#">FAQ</a></li>
                                 <li><a href="#">Terms of Use</a></li>
                                 <li><a href="#">Privacy</a></li>
-                            </ul>
+                            </ul> --}}
                         </div>
                         <div class="col-md-6">
                             <p class="text-xs-center crtext">&copy; {{ date('Y') }} {{ config('app.name') }}. All

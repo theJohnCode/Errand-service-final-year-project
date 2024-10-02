@@ -16,7 +16,8 @@
     </div>
     <section class="content-central">
         <div class="semiboxshadow text-center">
-            <img src="{{ asset('images/services/thumbnails/'. $service->thumbnail) }}" class="img-responsive" alt="{{ $service->name }}">
+            <img src="{{ asset('images/services/thumbnails/' . $service->thumbnail) }}" class="img-responsive"
+                alt="{{ $service->name }}">
         </div>
         <div class="content_info">
             <div class="paddings-mini">
@@ -28,13 +29,14 @@
                                     <div class="col-md-12">
                                         <div class="post-header">
                                             <div class="post-format-icon post-format-standard"
-                                                 style="margin-top: -10px;">
+                                                style="margin-top: -10px;">
                                                 <i class="fa fa-image"></i>
                                             </div>
                                             <div class="post-info-wrap">
                                                 <h2 class="post-title">
                                                     <a href="#" title="Post Format: Standard"
-                                                       rel="bookmark">{{ $service->name }}: {{ $service->category->name }}
+                                                        rel="bookmark">{{ $service->name }}:
+                                                        {{ $service->category->name }}
                                                     </a>
                                                 </h2>
                                                 <div class="post-meta" style="height: 10px;">
@@ -45,8 +47,8 @@
                                     <div class="col-md-12">
                                         <div id="single-carousel">
                                             <div class="img-hover">
-                                                <img src="{{ asset('images/services/services/' . $service->image) }}" alt="{{ $service->name }}"
-                                                     class="img-responsive">
+                                                <img src="{{ asset('images/services/services/' . $service->image) }}"
+                                                    alt="{{ $service->name }}" class="img-responsive">
                                             </div>
                                         </div>
                                     </div>
@@ -54,22 +56,6 @@
                                         <div class="post-content">
                                             <h3>{{ $service->name }}</h3>
                                             <p>{{ $service->description }}</p>
-                                            <h4>Inclusion</h4>
-                                            <ul class="list-styles">
-                                                @foreach(explode('|',$service->inclusion) as $inclusion)
-                                                    <li><i class="fa fa-plus"></i>
-                                                        {{ $inclusion }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                            <h4>Exclusion</h4>
-                                            <ul class="list-styles">
-                                                @foreach(explode('|',$service->exclusion) as $exclusion)
-                                                    <li><i class="fa fa-minus"></i>
-                                                        {{ $exclusion }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +69,9 @@
                                         <table class="table">
                                             <tr>
                                                 <td style="border-top: none;">Price</td>
-                                                <td style="border-top: none;"><span>&#36;</span> {{ $service->price }}</td>
+                                                <td style="border-top: none;"><span>&#8358;</span>
+                                                    {{ $service->price }}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Quantity</td>
@@ -94,9 +82,9 @@
                                                 @php
                                                     $total = $service->price;
                                                 @endphp
-                                                @if($service->discount)
-                                                    @if($service->discount_type === 'fixed')
-                                                        <td>$ {{ $service->discount }}</td>
+                                                @if ($service->discount)
+                                                    @if ($service->discount_type === 'fixed')
+                                                        <td>₦ {{ $service->discount }}</td>
                                                         @php $total = $total - $service->discount; @endphp
                                                     @elseif($service->discount_type === 'percent')
                                                         <td>{{ $service->discount }} %</td>
@@ -108,27 +96,34 @@
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>&#36;</span> {{ $total }}</td>
+                                                <td><span>&#8358;</span> {{ $total }}</td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div class="panel-footer">
-                                        <form>
-                                            <input type="submit" class="btn btn-primary" name="submit"
-                                                   value=" Book Now">
-                                        </form>
+                                        @if (auth()->id() !== $service->postedBy->id && auth()->user()->utype == 'ERR')
+                                            <a href="{{ URL('errandify', $service->postedBy) }}"
+                                                class="btn btn-primary">Book Now
+                                            </a>
+                                        @else
+                                            <a href="{{ route('home.service_details', ['service_slug' => $service->slug]) }}"
+                                                class="btn btn-primary">View
+                                            </a>
+                                        @endif
+
                                     </div>
                                 </div>
                             </aside>
                             <aside>
                                 <h3>Related Service</h3>
-                                @if($related_service)
+                                @if ($related_service)
                                     <div class="col-md-12 col-sm-6 col-xs-12 bg-dark color-white padding-top-mini"
-                                         style="max-width: 360px">
-                                        <a href="{{ route('home.service_details',['service_slug'=>$related_service->slug]) }}">
+                                        style="max-width: 360px">
+                                        <a
+                                            href="{{ route('home.service_details', ['service_slug' => $related_service->slug]) }}">
                                             <div class="img-hover">
-                                                <img src="{{ asset('images/services/thumbnails/'. $related_service->thumbnail) }}"
-                                                     alt="{{ $related_service->name }}" class="img-responsive">
+                                                <img src="{{ asset('images/services/thumbnails/' . $related_service->thumbnail) }}"
+                                                    alt="{{ $related_service->name }}" class="img-responsive">
                                             </div>
                                             <div class="info-gallery">
                                                 <h3>
@@ -137,16 +132,18 @@
                                                 <hr class="separator">
                                                 <p>{{ $related_service->name }}</p>
                                                 <div class="content-btn">
-                                                    <a href="{{ route('home.service_details',['service_slug'=>$service->slug]) }}"
-                                                       class="btn btn-warning">View Details</a>
+                                                    <a href="{{ route('home.service_details', ['service_slug' => $service->slug]) }}"
+                                                        class="btn btn-warning">View Details</a>
                                                 </div>
-                                                <div class="price"><span>&#36;</span><b>From</b>{{ $related_service->price }}</div>
+                                                <div class="price">
+                                                    <span>&#8358;</span><b>From</b>{{ $related_service->price }}
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
                                 @else
                                     <div class="col-md-12 col-sm-6 col-xs-12 bg-dark color-white padding-top-mini"
-                                         style="max-width: 360px">
+                                        style="max-width: 360px">
                                         <p>No Related Services</p>
                                     </div>
                                 @endif
