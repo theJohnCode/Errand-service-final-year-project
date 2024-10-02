@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 class AdminAddServiceCategory extends Component
 {
     use WithFileUploads;
@@ -19,8 +20,9 @@ class AdminAddServiceCategory extends Component
     /**
      * this method for generate slug from category name
      */
-    public function generateSlug(){
-        $this->slug = Str::slug($this->name,'-');
+    public function generateSlug()
+    {
+        $this->slug = Str::slug($this->name, '-');
     }
 
     /**
@@ -28,17 +30,18 @@ class AdminAddServiceCategory extends Component
      */
     public function updated($fields)
     {
-        $this->validateOnly($fields,[
-           'name' => 'required',
-           'slug' => 'required',
-           'image' => 'required|mimes:jpeg,jpg,png,gif',
+        $this->validateOnly($fields, [
+            'name' => 'required',
+            'slug' => 'required',
+            'image' => 'required|mimes:jpeg,jpg,png,gif',
         ]);
     }
 
     /**
      * this method for create new service category
      */
-    public function createNewCategory(){
+    public function createNewCategory()
+    {
         $this->validate([
             'name' => 'required',
             'slug' => 'required',
@@ -49,13 +52,13 @@ class AdminAddServiceCategory extends Component
         $serviceCategory->name = $this->name;
         $serviceCategory->slug = $this->slug;
         $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
-        $this->image->storeAs('categories',$imageName,$disk = 'public_uploads');
+        $this->image->storeAs('categories', $imageName, $disk = 'public_uploads');
         $serviceCategory->image = $imageName;
         $serviceCategory->save();
         // Set a success toast, with a title
         toastr()->success('Service Category Has Been Add Successfully', 'Congrats');
         return redirect()->route('admin.service_categories');
-//        session()->flash('massage','Service Category Has Been Add Successfully');
+        //        session()->flash('massage','Service Category Has Been Add Successfully');
     }
     public function render()
     {

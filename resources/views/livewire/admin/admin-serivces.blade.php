@@ -40,71 +40,84 @@
                                             All Services
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="{{ route('admin.add_service') }}" class="btn btn-primary pull-right">Add New</a>
+                                            <a href="{{ route('admin.add_service') }}"
+                                                class="btn btn-primary pull-right">Add New</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-striped">
                                         <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
-                                            <th>Featured</th>
-                                            <th>Category</th>
-                                            <th>Image</th>
-                                            <th>Created At</th>
-                                            <th>Control</th>
-                                        </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Status</th>
+                                                <th>Featured</th>
+                                                <th>Category</th>
+                                                <th>Image</th>
+                                                <th>Posted By</th>
+                                                <th>Created At</th>
+                                                <th>Control</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        @if($services->count() > 0)
-                                            @foreach($services as $index=>$service)
-                                                <tr>
-                                                    <td>{{ $index+1 }}</td>
-                                                    <td>{{ $service->name }}</td>
-                                                    <td>{{ $service->price }}</td>
-                                                    <td>
-                                                        @if($service->status)
-                                                            Active
-                                                        @else
-                                                            Inactive
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if($service->featured)
-                                                            Yes
-                                                        @else
-                                                            No
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $service->category->name }}</td>
-                                                    <td>
-                                                        <image
-                                                            src="{{ asset('images/services/thumbnails/' . $service->thumbnail) }}"
-                                                            width="50" height="50"></image>
-                                                    </td>
-                                                    <td>{{ $service->created_at }}</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.edit_service',['service_id'=>$service->id]) }}">
-                                                            <i class="fa fa-edit fa-2x"></i>
-                                                        </a>
-                                                        <a href="#" onclick="confirm('Are you sure you want to delete this service?') ||
-                                                            event.stopImmediatePropagation()" wire:click.prevent="deleteService({{ $service->id }})"><i class="fa fa-trash fa-2x"></i></a>
-                                                    </td>
+                                            @if ($services->count() > 0)
+                                                @foreach ($services as $index => $service)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>{{ $service->name }}</td>
+                                                        <td>{{ $service->price }}</td>
+                                                        <td>
+                                                            @if ($service->status)
+                                                                Active
+                                                            @else
+                                                                Inactive
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($service->featured)
+                                                                Yes
+                                                            @else
+                                                                No
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $service->category->name }}</td>
+                                                        <td>
+                                                            <image
+                                                                src="{{ asset('images/services/thumbnails/' . $service->thumbnail) }}"
+                                                                width="50" height="50"></image>
+                                                        </td>
+                                                        <td>{{ ucwords($service->postedBy?->name) }}
+                                                            @if ($service->postedBy?->utype)
+                                                                ({{ $service->postedBy?->utype }})
+                                                        </td>
+                                                @endif
+                                                <td>{{ $service->created_at }}</td>
+                                                <td>
+                                                    <a
+                                                        href="{{ route('admin.edit_service', ['service_id' => $service->id]) }}">
+                                                        <i class="fa fa-edit fa-2x"></i>
+                                                    </a>
+                                                    <a href="#"
+                                                        onclick="confirm('Are you sure you want to delete this service?') ||
+                                                            event.stopImmediatePropagation()"
+                                                        wire:click.prevent="deleteService({{ $service->id }})"><i
+                                                            class="fa fa-trash fa-2x"></i></a>
+                                                </td>
                                                 </tr>
                                             @endforeach
                                         @else
-                                            <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
+                                            <table class="table table-hover" id="example1" data-page-length='50'
+                                                style=" text-align: center;">
                                                 <tbody>
-                                                <tr>
-                                                    <td colspan="8" class="text-center text-danger">There is no Services available.</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center text-danger">There is
+                                                            no Services available.</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
-                                        @endif
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

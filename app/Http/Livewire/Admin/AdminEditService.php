@@ -23,8 +23,8 @@ class AdminEditService extends Component
     public $discount;
     public $discount_type;
     public $description;
-    public $inclusion;
-    public $exclusion;
+    // public $inclusion;
+    // public $exclusion;
     public $image;
     public $thumbnail;
     public $service_id;
@@ -50,8 +50,8 @@ class AdminEditService extends Component
         $this->discount_type = $service->discount_type;
         $this->featured = $service->featured;
         $this->description = $service->description;
-        $this->inclusion = str_replace("|", "\n", $service->inclusion);
-        $this->exclusion = str_replace("|", "\n", $service->exclusion);
+        // $this->inclusion = str_replace("|", "\n", $service->inclusion);
+        // $this->exclusion = str_replace("|", "\n", $service->exclusion);
         $this->image = $service->image;
         $this->thumbnail = $service->thumbnail;
     }
@@ -65,8 +65,8 @@ class AdminEditService extends Component
             'service_category_id' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'inclusion' => 'required',
-            'exclusion' => 'required',
+            // 'inclusion' => 'required',
+            // 'exclusion' => 'required',
         ]);
 
         if ($this->newImage) {
@@ -90,8 +90,8 @@ class AdminEditService extends Component
             'service_category_id'=> 'required',
             'price'=> 'required',
             'description'=> 'required',
-            'inclusion'=> 'required',
-            'exclusion'=> 'required',
+            // 'inclusion'=> 'required',
+            // 'exclusion'=> 'required',
         ]);
 
         if ($this->newImage) {
@@ -115,8 +115,8 @@ class AdminEditService extends Component
         $service->discount_type = $this->discount_type;
         $service->featured = $this->featured;
         $service->description = $this->description;
-        $service->inclusion = str_replace("\n",'|',trim($this->inclusion));
-        $service->exclusion = str_replace("\n",'|',trim($this->exclusion));
+        // $service->inclusion = str_replace("\n",'|',trim($this->inclusion));
+        // $service->exclusion = str_replace("\n",'|',trim($this->exclusion));
 
         if ($this->newImage){
             Storage::disk('public_uploads')->delete('/services/services/'.$this->image);

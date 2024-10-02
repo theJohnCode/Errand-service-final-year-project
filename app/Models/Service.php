@@ -13,7 +13,18 @@ class Service extends Model
 
     protected $guarded = [];
 
-    public function category(){
-        return $this->belongsTo(ServiceCategory::class,'service_category_id');
+    public function category()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'service_category_id');
+    }
+
+    public function postedBy()
+    {
+        return $this->belongsTo(User::class, 'posted_by');
+    }
+
+    public function interests()
+    {
+        return $this->hasMany(Interest::class);
     }
 }

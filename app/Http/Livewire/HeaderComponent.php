@@ -11,10 +11,11 @@ class HeaderComponent extends Component
 
     public function mount()
     {
-        $this->categories = ServiceCategory::with('children')
+        $this->categories = ServiceCategory::with(['children','services'])
         ->whereNull('parent_id')
         ->whereHas('children')
         ->get();
+        // dd($this->categories);
     }
 
     public function render()

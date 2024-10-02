@@ -1,45 +1,34 @@
 <?php
 
+use App\Http\Livewire\Home;
+use App\Http\Livewire\ContactUs;
 use App\Http\Livewire\Admin\Admin;
-use App\Http\Livewire\Admin\AdminAddService;
-use App\Http\Livewire\Admin\AdminAddServiceCategory;
-use App\Http\Livewire\Admin\AdminAddSlider;
-use App\Http\Livewire\Admin\AdminEditService;
-use App\Http\Livewire\Admin\AdminEditServiceCategory;
-use App\Http\Livewire\Admin\AdminEditSlider;
-use App\Http\Livewire\Admin\AdminServices;
-use App\Http\Livewire\Admin\AdminServiceByCategory;
-use App\Http\Livewire\Admin\AdminServiceCategory;
-use App\Http\Livewire\Admin\AdminSlider;
 use App\Http\Livewire\Admin\Contacts;
 use App\Http\Livewire\ChangeLocation;
-use App\Http\Livewire\ContactUs;
-use App\Http\Livewire\Customer\Customer;
-use App\Http\Livewire\Home;
-use App\Http\Livewire\ServiceByCategory;
-use App\Http\Livewire\ServiceCategory;
 use App\Http\Livewire\ServiceDetails;
-use App\Http\Livewire\ServiceProvider\EditServiceProviderProfile;
-use App\Http\Livewire\ServiceProvider\ServiceProvider;
-use App\Http\Controllers\SearchService;
-
-use App\Http\Livewire\ServiceProvider\ServiceProviderProfile;
 use Illuminate\Support\Facades\Route;
+use App\Actions\Fortify\CreateNewUser;
+use App\Http\Livewire\ServiceCategory;
+use App\Http\Controllers\SearchService;
+use App\Http\Livewire\Admin\AdminSlider;
+use App\Http\Livewire\Customer\Customer;
+use App\Http\Livewire\ServiceByCategory;
+use App\Http\Livewire\Admin\AdminServices;
+use App\Http\Livewire\Admin\AdminAddSlider;
+use App\Http\Controllers\RegisterController;
+use App\Http\Livewire\Admin\AdminAddService;
+use App\Http\Livewire\Admin\AdminEditSlider;
+use App\Http\Livewire\Admin\AdminEditService;
+use App\Http\Livewire\Admin\AdminServiceCategory;
+use App\Http\Livewire\Admin\AdminServiceByCategory;
+use App\Http\Livewire\Admin\AdminAddServiceCategory;
+use App\Http\Livewire\Admin\AdminEditServiceCategory;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Livewire\ServiceProvider\ServiceProvider;
+use App\Http\Livewire\ServiceProvider\ServiceProviderProfile;
+use App\Http\Livewire\ServiceProvider\EditServiceProviderProfile;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
 Route::get('/', Home::class)->name('home');
 Route::get('/service-categories', ServiceCategory::class)->name('home.service_categories');
 Route::get('/{category_slug}/service', ServiceByCategory::class)->name('home.service_by_category');
@@ -72,6 +61,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 // For Service Provider
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-service-provider'])->group(function () {
+    Route::get('/service-provider/services/add', AdminAddService::class)->name('admin.add_service');
+    Route::get('/service-provider/services/edit/{service_id}', AdminEditService::class)->name('admin.edit_service');
     Route::get('/service-provider/dashboard', ServiceProvider::class)->name('service-provider.dashboard');
     Route::get('/service-provider/profile', ServiceProviderProfile::class)->name('service-provider.profile');
     Route::get('/service-provider/profile/edit', EditServiceProviderProfile::class)->name('service-provider.edit_profile');
@@ -81,3 +72,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/customer/dashboard', Customer::class)->name('customer.dashboard');
 });
+
+Route::get('/register-errand-client', [RegisterController::class, 'showErcRegistrationForm'])->name('register.erc');
+
+Route::get('/register-errand-runner', [RegisterController::class, 'showErrRegistrationForm'])->name('register.err');

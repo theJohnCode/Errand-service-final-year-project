@@ -18,17 +18,27 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->string('phone')->unique();
-            $table->rememberToken();
+            $table->text('address')->nullable();
+            $table->boolean('is_student')->default(1);
+            $table->string('dob')->nullable();
+            $table->string('state')->nullable();
+            $table->string('lga')->nullable();
+            $table->string('school')->nullable();
+            $table->string('faculty')->nullable();
+            $table->string('department')->nullable();
+            $table->string('level')->nullable();
+            $table->string('password');
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->enum('utype', [
-                UserTypeEnum::ERRAND_RUNNER,
-                UserTypeEnum::ERRAND_CLIENT,
-                UserTypeEnum::ADMIN,
-            ])->default(UserTypeEnum::ERRAND_RUNNER);
+                'ERR',
+                'ERC',
+                'ADM',
+                ])->default('ERR');
+
+            $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

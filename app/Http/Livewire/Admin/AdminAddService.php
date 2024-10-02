@@ -22,16 +22,15 @@ class AdminAddService extends Component
     public $discount;
     public $discount_type;
     public $description;
-    public $inclusion;
-    public $exclusion;
     public $image;
     public $thumbnail;
 
     /**
      * this method for generate slug from category name
      */
-    public function generateSlug(){
-        $this->slug = Str::slug($this->name,'-');
+    public function generateSlug()
+    {
+        $this->slug = Str::slug($this->name, '-');
     }
 
     /**
@@ -39,30 +38,27 @@ class AdminAddService extends Component
      */
     public function updated($fields)
     {
-        $this->validateOnly($fields,[
+        $this->validateOnly($fields, [
             'name' => 'required',
             'slug' => 'required',
-            'tagline'=> 'required',
-            'service_category_id'=> 'required',
-            'price'=> 'required',
-            'description'=> 'required',
-            'inclusion'=> 'required',
-            'exclusion'=> 'required',
+            'tagline' => 'required',
+            'service_category_id' => 'required',
+            'price' => 'required',
+            'description' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
             'thumbnail' => 'required|mimes:jpeg,jpg,png,gif',
         ]);
     }
 
-    public function createNewService(){
+    public function createNewService()
+    {
         $this->validate([
             'name' => 'required',
             'slug' => 'required',
-            'tagline'=> 'required',
-            'service_category_id'=> 'required',
-            'price'=> 'required',
-            'description'=> 'required',
-            'inclusion'=> 'required',
-            'exclusion'=> 'required',
+            'tagline' => 'required',
+            'service_category_id' => 'required',
+            'price' => 'required',
+            'description' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
             'thumbnail' => 'required|mimes:jpeg,jpg,png,gif',
         ]);
@@ -76,15 +72,14 @@ class AdminAddService extends Component
         $service->discount = $this->discount;
         $service->discount_type = $this->discount_type;
         $service->description = $this->description;
-        $service->inclusion = str_replace("\n",'|',trim($this->inclusion));
-        $service->exclusion = str_replace("\n",'|',trim($this->exclusion));
+        $service->posted_by = auth()->id();
 
         $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
-        $this->image->storeAs('services/services',$imageName,$disk = 'public_uploads');
+        $this->image->storeAs('services/services', $imageName, $disk = 'public_uploads');
         $service->image = $imageName;
 
         $thumbnailName = Carbon::now()->timestamp . '.' . $this->thumbnail->extension();
-        $this->thumbnail->storeAs('services/thumbnails',$thumbnailName,$disk = 'public_uploads');
+        $this->thumbnail->storeAs('services/thumbnails', $thumbnailName, $disk = 'public_uploads');
         $service->thumbnail = $thumbnailName;
 
         $service->save();
@@ -96,6 +91,6 @@ class AdminAddService extends Component
     public function render()
     {
         $serviceCategories = ServiceCategory::all();
-        return view('livewire.admin.admin-add-service',['serviceCategories' => $serviceCategories])->layout('layouts.base');
+        return view('livewire.admin.admin-add-service', ['serviceCategories' => $serviceCategories])->layout('layouts.base');
     }
 }

@@ -153,7 +153,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="inclusion" class="control-label col-sm-3">Inclusion</label>
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" id="inclusion" name="inclusion" placeholder="inclusion" wire:model="inclusion"></textarea>
@@ -175,7 +175,7 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="newImage" class="control-label col-sm-3">Image</label>

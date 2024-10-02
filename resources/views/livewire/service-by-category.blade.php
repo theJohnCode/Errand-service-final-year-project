@@ -28,25 +28,33 @@
             <div>
                 <div class="container">
                     <div class="portfolioContainer">
-                        @if($serviceCategory->services->count() > 0)
-                            @foreach($serviceCategory->services as $service)
-                            <div class="col-xs-6 col-sm-4 col-md-3 nature hsgrids"
-                                 style="padding-right: 5px;padding-left: 5px;">
-                                <a class="g-list" href="{{ route('home.service_details',['service_id'=>$service->id]) }}">
-                                    <div class="img-hover">
-                                        <img src="{{ asset('images/services/thumbnails/'. $service->thumbnail) }}" alt="{{ $service->name }}"
-                                             class="img-responsive">
-                                    </div>
-                                    <div class="info-gallery">
-                                        <h3>{{ $service->name }}</h3>
-                                        <hr class="separator">
-                                        <p>{{ $service->tagline }}</p>
-                                        <div class="content-btn"><a href="#"
-                                                                    class="btn btn-primary">Book Now</a></div>
-                                        <div class="price"><span>&#36;</span><b>From</b>{{ $service->price }}</div>
-                                    </div>
-                                </a>
-                            </div>
+                        @if ($serviceCategory->services->count() > 0)
+                            @foreach ($serviceCategory->services as $service)
+                                <div class="col-xs-6 col-sm-4 col-md-3 nature hsgrids"
+                                    style="padding-right: 5px;padding-left: 5px;">
+                                    <a class="g-list"
+                                        href="{{ route('home.service_details', ['service_slug' => $service->slug]) }}">
+                                        <div class="img-hover">
+                                            <img src="{{ asset('images/services/thumbnails/' . $service->thumbnail) }}"
+                                                alt="{{ $service->name }}" class="img-responsive">
+                                        </div>
+                                        <div class="info-gallery">
+                                            <h3>{{ $service->name }}</h3>
+                                            <hr class="separator">
+                                            <p>{{ $service->tagline }}</p>
+                                            @if (auth()->id() !== $service->postedBy->id)
+                                                <div class="content-btn">
+                                                    <a href="{{ URL('errandify', $service->postedBy) }}"
+                                                        class="btn btn-primary">Book Now
+                                                    </a>
+                                                </div>
+                                            @endif
+
+                                            <div class="price"><span>&#36;</span><b>From</b>{{ $service->price }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             @endforeach
                         @else
                             <p class="col-md-12 text-center text-danger">There are no services available.</p>

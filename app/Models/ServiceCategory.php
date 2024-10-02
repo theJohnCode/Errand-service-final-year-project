@@ -15,7 +15,7 @@ class ServiceCategory extends Model
 
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany(Service::class, 'service_category_id');
     }
 
     public function children()
@@ -27,4 +27,10 @@ class ServiceCategory extends Model
     {
         return $this->belongsTo(ServiceCategory::class, 'parent_id');
     }
+
+     // A service can have many errands
+     public function errands()
+     {
+         return $this->hasMany(Errand::class);
+     }
 }

@@ -16,7 +16,7 @@ class AuthServiceProvider
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->utype === 'SVP'){
+        if (auth()->user()->utype === 'ERC'){
             return $next($request);
         }else{
             session()->flush();

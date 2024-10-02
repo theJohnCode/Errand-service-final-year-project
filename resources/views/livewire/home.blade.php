@@ -2,30 +2,32 @@
     <section class="tp-banner-container">
 
         <div class="tp-banner">
-            @if($slides->count()> 0)
-            <ul>
-                @foreach($slides as $slide)
-                    <li data-transition="slidevertical" data-slotamount="1" data-masterspeed="1000"
-                        data-saveperformance="off" data-title="Slide">
-                        <img src="{{ asset('images/slides/' . $slide->image) }}" alt="{{ $slide->name }}" data-bgposition="center center"
-                             data-kenburns="on" data-duration="6000" data-ease="Linear.easeNone" data-bgfit="130"
-                             data-bgfitend="100" data-bgpositionend="right center">
-                    </li>
-                @endforeach
-            </ul>
+            @if ($slides->count() > 0)
+                <ul>
+                    @foreach ($slides as $slide)
+                        <li data-transition="slidevertical" data-slotamount="1" data-masterspeed="1000"
+                            data-saveperformance="off" data-title="Slide">
+                            <img src="{{ asset('images/slides/' . $slide->image) }}" alt="{{ $slide->name }}"
+                                data-bgposition="center center" data-kenburns="on" data-duration="6000"
+                                data-ease="Linear.easeNone" data-bgfit="130" data-bgfitend="100"
+                                data-bgpositionend="right center">
+                        </li>
+                    @endforeach
+                </ul>
             @else
                 <ul>
                     <li data-transition="slidevertical" data-slotamount="1" data-masterspeed="1000"
                         data-saveperformance="off" data-title="Slide">
-                        <img src="{{ asset('assets/img/slide/1.jpg') }}" alt="fullslide1" data-bgposition="center center"
-                             data-kenburns="on" data-duration="6000" data-ease="Linear.easeNone" data-bgfit="130"
-                             data-bgfitend="100" data-bgpositionend="right center">
+                        <img src="{{ asset('assets/img/slide/1.jpg') }}" alt="fullslide1"
+                            data-bgposition="center center" data-kenburns="on" data-duration="6000"
+                            data-ease="Linear.easeNone" data-bgfit="130" data-bgfitend="100"
+                            data-bgpositionend="right center">
                     </li>
                     <li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="1000"
                         data-saveperformance="off" data-title="Slide">
                         <img src="{{ asset('assets/img/slide/2.jpg') }}" alt="fullslide1" data-bgposition="top center"
-                             data-kenburns="on" data-duration="6000" data-ease="Linear.easeNone" data-bgfit="130"
-                             data-bgfitend="100" data-bgpositionend="right center">
+                            data-kenburns="on" data-duration="6000" data-ease="Linear.easeNone" data-bgfit="130"
+                            data-bgfitend="100" data-bgpositionend="right center">
                     </li>
                 </ul>
             @endif
@@ -40,8 +42,8 @@
             <div class="filter-header">
                 <form id="sform" action="{{ route('home.search_service') }}" method="POST">
                     @csrf
-                    <input type="text" id="search" name="search" required="required" placeholder="What Services do you want?"
-                           class="input-large typeahead" autocomplete="off">
+                    <input type="text" id="search" name="search" required="required"
+                        placeholder="What Services do you want?" class="input-large typeahead" autocomplete="off">
                     <input type="submit" name="submit" value="Search">
                 </form>
             </div>
@@ -58,18 +60,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        @if($service_categories->count()> 0)
-                        <ul id="sponsors" class="tooltip-hover">
-                            @foreach($service_categories as $service_category)
-                                <li data-toggle="tooltip" title="{{ $service_category->name }}"
-                                    data-original-title="{{ $service_category->name }}"> <a
-                                        href="{{ route('home.service_by_category',['category_slug'=>$service_category->slug]) }}">
-                                        <img src="{{ asset('images/categories/' . $service_category->image) }}"
-                                             alt="{{ $service_category->name }}">
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @if ($service_categories->count() > 0)
+                            <ul id="sponsors" class="tooltip-hover">
+                                @foreach ($service_categories as $service_category)
+                                    <li data-toggle="tooltip" title="{{ $service_category->name }}"
+                                        data-original-title="{{ $service_category->name }}"> <a
+                                            href="{{ route('home.service_by_category', ['category_slug' => $service_category->slug]) }}">
+                                            <img src="{{ asset('images/categories/' . $service_category->image) }}"
+                                                alt="{{ $service_category->name }}">
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         @else
                             <ul id="sponsors" class="tooltip-hover">
                                 <li>
@@ -97,23 +99,25 @@
                         </div>
                     </div>
                     <div class="portfolioContainer" style="margin-top: -50px;">
-                        @if($featured_services->count() > 0)
-                            @foreach($featured_services as $featured_service)
+                        @if ($featured_services->count() > 0)
+                            @foreach ($featured_services as $featured_service)
                                 <div class="col-xs-6 col-sm-4 col-md-3 hsgrids"
-                                     style="padding-right: 5px;padding-left: 5px;">
-                                    <a class="g-list" href="{{ route('home.service_details' ,['service_slug'=>$featured_service->slug]) }}">
+                                    style="padding-right: 5px;padding-left: 5px;">
+                                    <a class="g-list"
+                                        href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}">
                                         <div class="img-hover">
                                             <img src="{{ asset('images/services/thumbnails/' . $featured_service->thumbnail) }}"
-                                                 alt="{{ $featured_service->name }}"
-                                                 class="img-responsive">
+                                                alt="{{ $featured_service->name }}" class="img-responsive">
                                         </div>
                                         <div class="info-gallery">
                                             <h3>{{ $featured_service->name }}</h3>
                                             <hr class="separator">
                                             <p>{{ $featured_service->tagline }}</p>
-                                            <div class="content-btn"><a href="{{ route('home.service_details' ,['service_slug'=>$featured_service->slug]) }}"
-                                                                        class="btn btn-primary">Book Now</a></div>
-                                            <div class="price"><span>&#36;</span><b>From</b>{{ $featured_service->price }}</div>
+                                            <div class="content-btn"><a
+                                                    href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
+                                                    class="btn btn-primary">Book Now</a></div>
+                                            <div class="price">
+                                                <span>&#36;</span><b>From</b>{{ $featured_service->price }}</div>
                                         </div>
                                     </a>
                                 </div>
@@ -142,15 +146,16 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            @if($featured_categories->count()> 0)
+                            @if ($featured_categories->count() > 0)
                                 <ul class="services-lines">
-                                    @foreach($featured_categories as $featured_category)
+                                    @foreach ($featured_categories as $featured_category)
                                         <li>
-                                            <a href="{{ route('home.service_by_category',['category_slug'=>$featured_category->slug]) }}">
+                                            <a
+                                                href="{{ route('home.service_by_category', ['category_slug' => $featured_category->slug]) }}">
                                                 <div class="item-service-line">
                                                     <i class="fa">
                                                         <img class="icon-img"
-                                                             src="{{ asset('images/categories/' . $featured_category->image) }}"></i>
+                                                            src="{{ asset('images/categories/' . $featured_category->image) }}"></i>
                                                     <h5>{{ $featured_category->name }}</h5>
                                                 </div>
                                             </a>
@@ -180,23 +185,25 @@
                 </div>
             </div>
             <div id="boxes-carousel">
-                @if($appliance_services->count()> 0)
-                    @foreach($appliance_services as $appliance_service)
+                @if ($appliance_services->count() > 0)
+                    @foreach ($appliance_services as $appliance_service)
                         <div>
-                            <a class="g-list" href="{{ route('home.service_details',['service_slug'=>$appliance_service->slug]) }}">
+                            <a class="g-list"
+                                href="{{ route('home.service_details', ['service_slug' => $appliance_service->slug]) }}">
                                 <div class="img-hover">
                                     <img src="{{ asset('images/services/thumbnails/' . $appliance_service->thumbnail) }}"
-                                         alt="{{ $appliance_service->name }}" class="img-responsive">
+                                        alt="{{ $appliance_service->name }}" class="img-responsive">
                                 </div>
                                 <div class="info-gallery">
                                     <h3>{{ $appliance_service->name }}</h3>
                                     <hr class="separator">
                                     <p>{{ $appliance_service->tagline }}</p>
                                     <div class="content-btn">
-                                        <a href="{{ route('home.service_details',['service_slug'=>$appliance_service->slug]) }}"
-                                           class="btn btn-primary">Book Now</a>
+                                        <a href="{{ route('home.service_details', ['service_slug' => $appliance_service->slug]) }}"
+                                            class="btn btn-primary">Book Now</a>
                                     </div>
-                                    <div class="price"><span>&#36;</span><b>From</b>{{ $appliance_service->price }}</div>
+                                    <div class="price"><span>&#36;</span><b>From</b>{{ $appliance_service->price }}
+                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -215,10 +222,12 @@
 
 @push('js')
     <script>
-        var path= "{{ route('home.autocomplete') }}";
+        var path = "{{ route('home.autocomplete') }}";
         $('input.typeahead').typeahead({
-            source: function(query,process){
-                return $.get(path,{search:query},function(data){
+            source: function(query, process) {
+                return $.get(path, {
+                    search: query
+                }, function(data) {
                     return process(data)
                 });
             }

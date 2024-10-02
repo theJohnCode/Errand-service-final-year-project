@@ -19,6 +19,7 @@ class CreateServiceCategoriesTable extends Migration
             $table->string('slug')->index();
             $table->string('image');
             $table->boolean('featured')->default(false);
+            $table->foreignId('parent_id')->nullable();
             $table->timestamps();
         });
     }
