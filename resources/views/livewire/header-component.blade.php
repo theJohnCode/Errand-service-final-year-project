@@ -49,7 +49,8 @@
                     @elseif(auth()->user()->utype === 'ERC')
                         <li class="login-form"> <a href="#" title="Register">My Account (Errand Client)</a>
                             <ul class="drop-down one-column hover-fade">
-                                <li><a href="{{ route('service-provider.dashboard') }}">Dashboard</a></li>
+                                {{-- <li><a href="{{ route('service-provider.dashboard') }}">Dashboard</a></li> --}}
+                                <li><a href="{{ route('admin.all_services') }}">All Services</a></li>
                                 <li><a href="{{ route('service-provider.profile') }}">Profile</a></li>
                                 <li><a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
@@ -60,6 +61,7 @@
                         <li class="login-form"> <a href="#" title="Register">My Account (Errand Runner)</a>
                             <ul class="drop-down one-column hover-fade">
                                 <li><a href="{{ route('customer.dashboard') }}">Dashboard</a></li>
+                                <li><a href="{{ route('customer.availability') }}">Availabilities</a></li>
                                 <li><a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                                 </li>
@@ -77,8 +79,7 @@
                             <li><a href="{{ route('register.erc') }}">As Errand Client</a></li>
                             <li><a href="{{ route('register.err') }}">As Errand Runner</a></li>
                         </ul>
-                         {{-- <a href="{{ route('register') }}" title="Register"></a>
-                        </li> --}}
+                
                     <li class="login-form"> <a href="{{ route('login') }}" title="Login">Login</a></li>
                 @endif
                 @endif

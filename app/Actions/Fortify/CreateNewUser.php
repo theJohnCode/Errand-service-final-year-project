@@ -77,6 +77,7 @@ class CreateNewUser implements CreatesNewUsers
             'is_student' => $input['is_student'],
             'dob' => $input['dob'],
             'lga' => $input['lga'],
+            'state' => $input['state'],
             'school' => $input['school'],
             'faculty' => $input['faculty'],
             'department' => $input['department'],

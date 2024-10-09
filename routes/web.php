@@ -14,16 +14,19 @@ use App\Http\Livewire\Admin\AdminSlider;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\ServiceByCategory;
 use App\Http\Livewire\Admin\AdminServices;
+use App\Http\Livewire\AvailabilityDetails;
 use App\Http\Livewire\Admin\AdminAddSlider;
 use App\Http\Controllers\RegisterController;
 use App\Http\Livewire\Admin\AdminAddService;
 use App\Http\Livewire\Admin\AdminEditSlider;
+use App\Http\Livewire\Customer\Availability;
 use App\Http\Livewire\Admin\AdminEditService;
+use App\Http\Livewire\Customer\AddAvailability;
+use App\Http\Livewire\Customer\EditAvailability;
 use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Admin\AdminServiceByCategory;
 use App\Http\Livewire\Admin\AdminAddServiceCategory;
 use App\Http\Livewire\Admin\AdminEditServiceCategory;
-
 use App\Http\Livewire\ServiceProvider\ServiceProvider;
 use App\Http\Livewire\ServiceProvider\ServiceProviderProfile;
 use App\Http\Livewire\ServiceProvider\EditServiceProviderProfile;
@@ -33,6 +36,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/service-categories', ServiceCategory::class)->name('home.service_categories');
 Route::get('/{category_slug}/service', ServiceByCategory::class)->name('home.service_by_category');
 Route::get('/service/{service_slug}', ServiceDetails::class)->name('home.service_details');
+Route::get('/availability/{availability_id}', AvailabilityDetails::class)->name('home.availability_details');
 
 Route::get('/autocomplete', [SearchService::class, 'autocomplete'])->name('home.autocomplete');
 Route::post('/search-service', [SearchService::class, 'search'])->name('home.search_service');
@@ -47,10 +51,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/service-categories/add', AdminAddServiceCategory::class)->name('admin.add_service_category');
     Route::get('/admin/service-categories/edit/{category_id}', AdminEditServiceCategory::class)->name('admin.edit_service_category');
 
-    Route::get('/admin/all-services', AdminServices::class)->name('admin.all_services');
     Route::get('/admin/{category_slug}/service', AdminServiceByCategory::class)->name('admin.service_by_category');
-    Route::get('/admin/services/add', AdminAddService::class)->name('admin.add_service');
-    Route::get('/admin/services/edit/{service_id}', AdminEditService::class)->name('admin.edit_service');
+
 
     Route::get('/admin/sliders', AdminSlider::class)->name('admin.slider');
     Route::get('/admin/sliders/add', AdminAddSlider::class)->name('admin.add_slider');
@@ -61,15 +63,22 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 // For Service Provider
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-service-provider'])->group(function () {
-    Route::get('/service-provider/services/add', AdminAddService::class)->name('service-provider.add_service');
-    Route::get('/service-provider/services/edit/{service_id}', AdminEditService::class)->name('admin.edit_service');
     Route::get('/service-provider/dashboard', ServiceProvider::class)->name('service-provider.dashboard');
     Route::get('/service-provider/profile', ServiceProviderProfile::class)->name('service-provider.profile');
     Route::get('/service-provider/profile/edit', EditServiceProviderProfile::class)->name('service-provider.edit_profile');
 });
+// For Service Provider and Admin
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdminClient'])->group(function () {
+    Route::get('/admin/all-services', AdminServices::class)->name('admin.all_services');
+    Route::get('/admin/services/add', AdminAddService::class)->name('admin.add_service');
+    Route::get('/admin/services/edit/{service_id}', AdminEditService::class)->name('admin.edit_service');
+});
 
 // For Customer
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/customer/availability', Availability::class)->name('customer.availability');
+    Route::get('/customer/availability/add', AddAvailability::class)->name('customer.add.availability');
+    Route::get('/customer/availability/edit/{availability_id}', EditAvailability::class)->name('customer.edit.availability');
     Route::get('/customer/dashboard', Customer::class)->name('customer.dashboard');
 });
 

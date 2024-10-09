@@ -27,4 +27,8 @@ class Service extends Model
     {
         return $this->hasMany(Interest::class);
     }
+    public function availabilities()
+    {
+        return $this->hasMany(Availability::class, 'runner_id');
+    }
 }

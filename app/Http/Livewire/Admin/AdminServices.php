@@ -32,7 +32,17 @@ class AdminServices extends Component
 
     public function render()
     {
-        $services = Service::latest()->paginate(10);
+        $user = auth()->user();
+
+        if ($user->utype === 'ADM') {
+            // If the user is an admin, fetch all services
+            $services = Service::latest()->paginate(10);
+        } else {
+            // If the user is a client, fetch only the services posted by this client
+            $services = Service::where('posted_by', $user->id)->latest()->paginate(10);
+        }
+        // $services = Service::latest()->paginate(10);
+
         return view('livewire.admin.admin-serivces', ['services' => $services])->layout('layouts.base');
     }
 }

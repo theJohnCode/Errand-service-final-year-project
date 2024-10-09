@@ -68,4 +68,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function services()
+    {
+        return $this->hasMany(Service::class, 'posted_by');
+    }
+    public function availabilities()
+    {
+        return $this->hasMany(Availability::class, 'runner_id');
+    }
 }

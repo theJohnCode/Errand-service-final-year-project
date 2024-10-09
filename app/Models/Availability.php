@@ -13,4 +13,8 @@ class Availability extends Model
     {
         return $this->belongsTo(User::class, 'runner_id');
     }
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

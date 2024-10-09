@@ -27,25 +27,27 @@
                                             Edit Service
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="{{ route('admin.all_services') }}" class="btn btn-primary pull-right">All Services</a>
+                                            <a href="{{ route('admin.all_services') }}"
+                                                class="btn btn-primary pull-right">All Services</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="panel-body">
-                                    {{--                                    @if(Session::has('message'))--}}
-                                    {{--                                        <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>--}}
-                                    {{--                                    @endif--}}
+                                    {{--                                    @if (Session::has('message')) --}}
+                                    {{--                                        <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div> --}}
+                                    {{--                                    @endif --}}
                                     <form class="form-horizontal" wire:submit.prevent="updateService">
                                         @csrf
                                         <div class="form-group">
                                             <label for="name" class="control-label col-sm-3">Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="name" name="name" class="form-control"
-                                                       placeholder="Service Name" wire:model="name" wire:keyup="generateSlug" required/>
+                                                    placeholder="Service Name" wire:model="name"
+                                                    wire:keyup="generateSlug" required />
                                                 @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -53,11 +55,12 @@
                                         <div class="form-group">
                                             <label for="slug" class="control-label col-sm-3">Slug</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="slug" name="slug" class="form-control" placeholder="Service Slug" wire:model="slug" required/>
+                                                <input type="text" id="slug" name="slug" class="form-control"
+                                                    placeholder="Service Slug" wire:model="slug" required />
                                                 @error('slug')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -65,28 +68,32 @@
                                         <div class="form-group">
                                             <label for="tagline" class="control-label col-sm-3">Tagline</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="tagline" name="tagline" class="form-control" placeholder="tagline" wire:model="tagline" required/>
+                                                <input type="text" id="tagline" name="tagline" class="form-control"
+                                                    placeholder="tagline" wire:model="tagline" required />
                                                 @error('tagline')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="service_category_id" class="control-label col-sm-3">Service Category</label>
+                                            <label for="service_category_id" class="control-label col-sm-3">Service
+                                                Category</label>
                                             <div class="col-sm-9">
-                                                <select id="service_category_id" name="service_category_id" class="form-control" wire:model="service_category_id" required>
+                                                <select id="service_category_id" name="service_category_id"
+                                                    class="form-control" wire:model="service_category_id" required>
                                                     <option value="">Select Category</option>
-                                                    @foreach($serviceCategories as $serviceCategory)
-                                                        <option value="{{ $serviceCategory->id}}">{{ $serviceCategory->name }}</option>
+                                                    @foreach ($serviceCategories as $serviceCategory)
+                                                        <option value="{{ $serviceCategory->id }}">
+                                                            {{ $serviceCategory->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('service_category_id')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -94,11 +101,12 @@
                                         <div class="form-group">
                                             <label for="price" class="control-label col-sm-3">Price</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="price" name="price" class="form-control" placeholder="price" wire:model="price" required/>
+                                                <input type="text" id="price" name="price" class="form-control"
+                                                    placeholder="price" wire:model="price" required />
                                                 @error('price')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -106,90 +114,78 @@
                                         <div class="form-group">
                                             <label for="discount" class="control-label col-sm-3">Discount</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="discount" name="discount" class="form-control" placeholder="discount" wire:model="discount"/>
+                                                <input type="text" id="discount" name="discount"
+                                                    class="form-control" placeholder="discount" wire:model="discount" />
                                                 @error('discount')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="discount_type" class="control-label col-sm-3">Discount Type</label>
+                                            <label for="discount_type" class="control-label col-sm-3">Discount
+                                                Type</label>
                                             <div class="col-sm-9">
-                                                <select id="discount_type" name="discount_type" class="form-control" wire:model="discount_type">
+                                                <select id="discount_type" name="discount_type" class="form-control"
+                                                    wire:model="discount_type">
                                                     <option value="">Select Discount Type</option>
                                                     <option value="fixed">Fixed</option>
                                                     <option value="percent">Percent</option>
                                                 </select>
                                                 @error('discount_type')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="featured" class="control-label col-sm-3">Featured</label>
-                                            <div class="col-sm-9">
-                                                <select id="featured" name="featured" class="form-control" wire:model="featured">
-                                                    <option value="0">No</option>
-                                                    <option value="1">Yes</option>
-                                                </select>
+                                        @if (auth()->user()->utype === 'ADM')
+                                            <div class="form-group">
+                                                <label for="featured" class="control-label col-sm-3">Featured</label>
+                                                <div class="col-sm-9">
+                                                    <select id="featured" name="featured" class="form-control"
+                                                        wire:model="featured">
+                                                        <option value="0">No</option>
+                                                        <option value="1">Yes</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+
 
                                         <div class="form-group">
-                                            <label for="description" class="control-label col-sm-3">Description</label>
+                                            <label for="description"
+                                                class="control-label col-sm-3">Description</label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" id="description" name="description" placeholder="description" wire:model="description"></textarea>
+                                                <textarea class="form-control" id="description" name="description" placeholder="description"
+                                                    wire:model="description"></textarea>
                                                 @error('description')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
-
-                                        {{-- <div class="form-group">
-                                            <label for="inclusion" class="control-label col-sm-3">Inclusion</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="inclusion" name="inclusion" placeholder="inclusion" wire:model="inclusion"></textarea>
-                                                @error('inclusion')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exclusion" class="control-label col-sm-3">Exclusion</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="exclusion" name="exclusion" placeholder="exclusion" wire:model="exclusion"></textarea>
-                                                @error('exclusion')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="newImage" class="control-label col-sm-3">Image</label>
                                             <div class="col-sm-9">
-                                                <input type="file" id="newImage" name="newImage" class="form-control-file" wire:model="newImage"/>
-                                                @if($newImage)
-                                                    <img src="{{ $newImage->temporaryUrl() }}" width="20%" height="20%" alt="newImage">
+                                                <input type="file" id="newImage" name="newImage"
+                                                    class="form-control-file" wire:model="newImage" />
+                                                @if ($newImage)
+                                                    <img src="{{ $newImage->temporaryUrl() }}" width="20%"
+                                                        height="20%" alt="newImage">
                                                 @else
-                                                    <img src="{{ asset('images/services/services') . '/' . $image  }}" width="20%" height="20%" alt="image">
+                                                    <img src="{{ asset('images/services/services') . '/' . $image }}"
+                                                        width="20%" height="20%" alt="image">
                                                 @endif
                                                 @error('newImage')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -197,16 +193,19 @@
                                         <div class="form-group">
                                             <label for="newThumbnail" class="control-label col-sm-3">Thumbnail</label>
                                             <div class="col-sm-9">
-                                                <input type="file" id="newThumbnail" name="newThumbnail" class="form-control-file" wire:model="newThumbnail"/>
-                                                @if($newThumbnail)
-                                                    <img src="{{ $newThumbnail->temporaryUrl() }}" width="20%" height="20%" alt="newThumbnail">
+                                                <input type="file" id="newThumbnail" name="newThumbnail"
+                                                    class="form-control-file" wire:model="newThumbnail" />
+                                                @if ($newThumbnail)
+                                                    <img src="{{ $newThumbnail->temporaryUrl() }}" width="20%"
+                                                        height="20%" alt="newThumbnail">
                                                 @else
-                                                    <img src="{{ asset('images/services/thumbnails') . '/' . $thumbnail  }}" width="20%" height="20%" alt="image">
+                                                    <img src="{{ asset('images/services/thumbnails') . '/' . $thumbnail }}"
+                                                        width="20%" height="20%" alt="image">
                                                 @endif
                                                 @error('newThumbnail')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -222,4 +221,3 @@
         </div>
     </section>
 </div>
-

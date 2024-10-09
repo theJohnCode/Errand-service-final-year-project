@@ -56,7 +56,7 @@
                                                 </div>
                                             @endif
 
-                                            <div class="price"><span>&#8358;</span><b>From</b>{{ $service->price }}
+                                            <div class="price"><span>&#8358;</span>Negotiable
                                             </div>
                                         </div>
                                     </a>

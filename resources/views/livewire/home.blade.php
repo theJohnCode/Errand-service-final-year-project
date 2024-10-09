@@ -113,30 +113,99 @@
                                             <h3>{{ $featured_service->name }}</h3>
                                             <hr class="separator">
                                             <p>{{ $featured_service->tagline }}</p>
-
-                                            @if (auth()->id() !== $featured_service->postedBy->id && auth()->user()->utype == 'ERR')
-                                                <div class="content-btn">
-                                                    <a href="{{ URL('errandify', $featured_service->postedBy) }}"
-                                                        class="btn btn-primary">Book Now
-                                                    </a>
-                                                </div>
+                                            @auth
+                                                @if (auth()->id() !== $featured_service->postedBy->id && in_array(auth()->user()->utype, ['ERC', 'ADM']))
+                                                    <div class="content-btn">
+                                                        <a href="{{ URL('errandify', $featured_service->postedBy) }}"
+                                                            class="btn btn-primary">Message
+                                                        </a>
+                                                    </div>
+                                                @else
+                                                    <div class="content-btn">
+                                                        <a href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
+                                                            class="btn btn-primary">View
+                                                        </a>
+                                                    </div>
+                                                @endif
                                             @else
                                                 <div class="content-btn">
                                                     <a href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
                                                         class="btn btn-primary">View
                                                     </a>
                                                 </div>
-                                            @endif
+                                            @endauth
 
-                                            <div class="price">
+
+                                            {{-- <div class="price">
                                                 <span>&#8358;</span><b>From</b>{{ $featured_service->price }}
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </a>
                                 </div>
                             @endforeach
                         @else
                             <p class="col-md-12 text-center text-danger">There are no choice services available.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content_info">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="titles">
+                            <h2>Available <span>Errand</span> Runners</h2>
+                            <i class="fa fa-plane"></i>
+                            <hr class="tall">
+                        </div>
+                    </div>
+                    <div class="portfolioContainer" style="margin-top: -50px;">
+                        @if ($availabilities->count() > 0)
+                            @foreach ($availabilities as $availability)
+                                <div class="col-xs-6 col-sm-4 col-md-3 hsgrids"
+                                    style="padding-right: 5px;padding-left: 5px;">
+                                    <a class="g-list"
+                                        href="{{ route('home.availability_details', ['availability_id' => $availability->id]) }}">
+                                        <div class="img-hover">
+                                            <img src="{{ asset('storage/users-avatar/' . $availability->runner->avatar) }}"
+                                                alt="{{ $availability->runner->name }}" class="img-responsive">
+                                        </div>
+                                        <div class="info-gallery">
+                                            <h3>{{ $availability->runner->name }}</h3>
+                                            <hr class="separator">
+                                            @auth
+                                                @if (auth()->id() !== $availability->runner->id && in_array(auth()->user()->utype, ['ERC', 'ADM']))
+                                                    <div class="content-btn">
+                                                        <a href="{{ URL('errandify', $availability->runner->id) }}"
+                                                            class="btn btn-primary">Message
+                                                        </a>
+                                                    </div>
+                                                @else
+                                                    <div class="content-btn">
+                                                        <a href="{{ route('home.availability_details', ['availability_id' => $availability->id]) }}"
+                                                            class="btn btn-primary">View
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            @else
+                                                <div class="content-btn">
+                                                    <a href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
+                                                        class="btn btn-primary">View
+                                                    </a>
+                                                </div>
+                                            @endauth
+
+
+                                            {{-- <div class="price">
+                                                <span>&#8358;</span><b>From</b>{{ $featured_service->price }}
+                                            </div> --}}
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="col-md-12 text-center text-danger">There are no available errand runners</p>
                         @endif
                     </div>
                 </div>
@@ -187,7 +256,8 @@
                 </div>
             </div>
         </div>
-        <div>
+
+        {{-- <div>
             <div class="container">
                 <div class="row">
                     <div class="titles">
@@ -211,20 +281,28 @@
                                     <h3>{{ $appliance_service->name }}</h3>
                                     <hr class="separator">
                                     <p>{{ $appliance_service->tagline }}</p>
-                                    @if (auth()->id() !== $appliance_service->postedBy->id && auth()->user()->utype == 'ERR')
-                                        <div class="content-btn">
-                                            <a href="{{ URL('errandify', $appliance_service->postedBy) }}"
-                                                class="btn btn-primary">Book Now
-                                            </a>
-                                        </div>
+                                    @auth
+                                        @if (auth()->id() !== $appliance_service->postedBy->id && auth()->user()?->utype == 'ERR')
+                                            <div class="content-btn">
+                                                <a href="{{ URL('errandify', $appliance_service->postedBy) }}"
+                                                    class="btn btn-primary">Book Now
+                                                </a>
+                                            </div>
+                                        @else
+                                            <div class="content-btn">
+                                                <a href="{{ route('home.service_details', ['service_slug' => $appliance_service->slug]) }}"
+                                                    class="btn btn-primary">View
+                                                </a>
+                                            </div>
+                                        @endif
                                     @else
                                         <div class="content-btn">
                                             <a href="{{ route('home.service_details', ['service_slug' => $appliance_service->slug]) }}"
                                                 class="btn btn-primary">View
                                             </a>
                                         </div>
-                                    @endif
-                                
+                                    @endauth
+
                                     <div class="price"><span>&#8358;</span><b>From</b>{{ $appliance_service->price }}
                                     </div>
                                 </div>
@@ -239,7 +317,8 @@
                     </ul>
                 @endif
             </div>
-        </div>
+        </div> --}}
+
     </section>
 </div>
 

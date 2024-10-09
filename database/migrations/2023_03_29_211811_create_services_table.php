@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration
             $table->string('slug')->unique();
             $table->string('tagline');
             $table->foreignId('service_category_id')->constrained('service_categories')->cascadeOnDelete();
-            $table->decimal('price', 8, 2);
+            // $table->decimal('price', 8, 2)->nullable();
             $table->decimal('discount')->nullable();
             $table->enum('discount_type', ['fixed', 'percent'])->nullable();
             $table->string('image')->nullable();

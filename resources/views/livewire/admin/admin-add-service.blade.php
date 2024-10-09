@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="price" class="control-label col-sm-3">Price</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="price" name="price" class="form-control"
@@ -107,9 +107,9 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="discount" class="control-label col-sm-3">Discount</label>
                                             <div class="col-sm-9">
                                                 <input type="number" id="discount" name="discount"
@@ -121,9 +121,9 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="discount_type" class="control-label col-sm-3">Discount
                                                 Type</label>
                                             <div class="col-sm-9">
@@ -139,7 +139,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="description"
