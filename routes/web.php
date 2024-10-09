@@ -50,8 +50,9 @@ Route::get('/contactus', ContactUs::class)->name('home.contactus');
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-admin'])->group(function () {
     Route::get('/admin/dashboard', Admin::class)->name('admin.dashboard');
     Route::get('/admin/dashboard/errand-runners', ErrandRunner::class)->name('admin.errand.runner');
-    Route::get('/admin/dashboard/errand-runners/edit/{runner_id}', ErrandRunner::class)->name('admin.errand.runner.edit');
+    // Route::get('/admin/dashboard/errand-runners/edit/{runner_id}', ErrandRunner::class)->name('admin.errand.runner.edit');
     Route::get('/admin/dashboard/errand-clients', ErrandClient::class)->name('admin.errand.client');
+    // Route::get('/admin/dashboard/errand-clients/edit/{client_id}', ErrandRunner::class)->name('admin.errand.client.edit');
     Route::get('/admin/dashboard/admins', Admins::class)->name('admin.admins');
 
     Route::get('/admin/service-categories', AdminServiceCategory::class)->name('admin.service_categories');

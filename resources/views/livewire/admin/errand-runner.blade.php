@@ -16,7 +16,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-md-6">
-                                    All Services
+                                    All Errand Runners
                                 </div>
                                 <div class="col-md-6">
                                     {{-- <a href="{{ route('admin.add_service') }}" class="btn btn-primary pull-right">Add
@@ -97,7 +97,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td colspan="8" class="text-center text-danger">There is
-                                                        no Services available.</td>
+                                                        no Errand Runner available.</td>
                                                 </tr>
                                             </tbody>
                                         </table>
