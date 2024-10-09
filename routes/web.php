@@ -3,6 +3,7 @@
 use App\Http\Livewire\Home;
 use App\Http\Livewire\ContactUs;
 use App\Http\Livewire\Admin\Admin;
+use App\Http\Livewire\Admin\Admins;
 use App\Http\Livewire\Admin\Contacts;
 use App\Http\Livewire\ChangeLocation;
 use App\Http\Livewire\ServiceDetails;
@@ -13,6 +14,8 @@ use App\Http\Controllers\SearchService;
 use App\Http\Livewire\Admin\AdminSlider;
 use App\Http\Livewire\Customer\Customer;
 use App\Http\Livewire\ServiceByCategory;
+use App\Http\Livewire\Admin\ErrandClient;
+use App\Http\Livewire\Admin\ErrandRunner;
 use App\Http\Livewire\Admin\AdminServices;
 use App\Http\Livewire\AvailabilityDetails;
 use App\Http\Livewire\Admin\AdminAddSlider;
@@ -46,6 +49,10 @@ Route::get('/contactus', ContactUs::class)->name('home.contactus');
 // For Admin
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'auth-admin'])->group(function () {
     Route::get('/admin/dashboard', Admin::class)->name('admin.dashboard');
+    Route::get('/admin/dashboard/errand-runners', ErrandRunner::class)->name('admin.errand.runner');
+    Route::get('/admin/dashboard/errand-runners/edit/{runner_id}', ErrandRunner::class)->name('admin.errand.runner.edit');
+    Route::get('/admin/dashboard/errand-clients', ErrandClient::class)->name('admin.errand.client');
+    Route::get('/admin/dashboard/admins', Admins::class)->name('admin.admins');
 
     Route::get('/admin/service-categories', AdminServiceCategory::class)->name('admin.service_categories');
     Route::get('/admin/service-categories/add', AdminAddServiceCategory::class)->name('admin.add_service_category');
