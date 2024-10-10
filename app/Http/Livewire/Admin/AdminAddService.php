@@ -43,8 +43,6 @@ class AdminAddService extends Component
             'slug' => 'required',
             'tagline' => 'required',
             'service_category_id' => 'required',
-            // 'price' => 'required',
-            // 'description' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
             'thumbnail' => 'required|mimes:jpeg,jpg,png,gif',
         ]);

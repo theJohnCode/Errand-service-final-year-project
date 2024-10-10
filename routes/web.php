@@ -20,6 +20,7 @@ use App\Http\Livewire\Admin\AdminServices;
 use App\Http\Livewire\AvailabilityDetails;
 use App\Http\Livewire\Admin\AdminAddSlider;
 use App\Http\Controllers\RegisterController;
+use App\Http\Livewire\Admin\AddAdmin;
 use App\Http\Livewire\Admin\AdminAddService;
 use App\Http\Livewire\Admin\AdminEditSlider;
 use App\Http\Livewire\Customer\Availability;
@@ -54,6 +55,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin/dashboard/errand-clients', ErrandClient::class)->name('admin.errand.client');
     // Route::get('/admin/dashboard/errand-clients/edit/{client_id}', ErrandRunner::class)->name('admin.errand.client.edit');
     Route::get('/admin/dashboard/admins', Admins::class)->name('admin.admins');
+    Route::get('/admin/dashboard/admins/edit/{admin_id}', ErrandRunner::class)->name('admin.admin.edit');
+    Route::get('/admin/dashboard/add-admin', AddAdmin::class)->name('admin.add.admin');
 
     Route::get('/admin/service-categories', AdminServiceCategory::class)->name('admin.service_categories');
     Route::get('/admin/service-categories/add', AdminAddServiceCategory::class)->name('admin.add_service_category');
