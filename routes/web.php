@@ -4,6 +4,7 @@ use App\Http\Livewire\Home;
 use App\Http\Livewire\ContactUs;
 use App\Http\Livewire\Admin\Admin;
 use App\Http\Livewire\Admin\Admins;
+use App\Http\Livewire\Admin\AddAdmin;
 use App\Http\Livewire\Admin\Contacts;
 use App\Http\Livewire\ChangeLocation;
 use App\Http\Livewire\ServiceDetails;
@@ -20,15 +21,16 @@ use App\Http\Livewire\Admin\AdminServices;
 use App\Http\Livewire\AvailabilityDetails;
 use App\Http\Livewire\Admin\AdminAddSlider;
 use App\Http\Controllers\RegisterController;
-use App\Http\Livewire\Admin\AddAdmin;
 use App\Http\Livewire\Admin\AdminAddService;
 use App\Http\Livewire\Admin\AdminEditSlider;
 use App\Http\Livewire\Customer\Availability;
 use App\Http\Livewire\Admin\AdminEditService;
 use App\Http\Livewire\Customer\AddAvailability;
+use App\Http\Livewire\Customer\CustomerProfile;
 use App\Http\Livewire\Customer\EditAvailability;
 use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Admin\AdminServiceByCategory;
+use App\Http\Livewire\Customer\EditCustomerProfile;
 use App\Http\Livewire\Admin\AdminAddServiceCategory;
 use App\Http\Livewire\Admin\AdminEditServiceCategory;
 use App\Http\Livewire\ServiceProvider\ServiceProvider;
@@ -78,6 +80,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/service-provider/profile', ServiceProviderProfile::class)->name('service-provider.profile');
     Route::get('/service-provider/profile/edit', EditServiceProviderProfile::class)->name('service-provider.edit_profile');
 });
+
 // For Service Provider and Admin
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authAdminClient'])->group(function () {
     Route::get('/admin/all-services', AdminServices::class)->name('admin.all_services');
@@ -91,6 +94,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/customer/availability/add', AddAvailability::class)->name('customer.add.availability');
     Route::get('/customer/availability/edit/{availability_id}', EditAvailability::class)->name('customer.edit.availability');
     Route::get('/customer/dashboard', Customer::class)->name('customer.dashboard');
+    Route::get('/customer/profile', CustomerProfile::class)->name('customer.profile');
+    Route::get('/customer/profile/edit', [RegisterController::class, 'editUser'])->name('customer.edit_profile');
+    Route::put('/customer/profile/{id}', [RegisterController::class, 'updateUser'])->name('customer.update');
 });
 
 Route::get('/register-errand-client', [RegisterController::class, 'showErcRegistrationForm'])->name('register.erc');
