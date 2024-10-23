@@ -48,7 +48,7 @@
                             {{ $totalFeaturedServices }}</div>
                     </div>
 
-                    Total Service Categories
+                    Total Task Categories
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar"
                             aria-valuenow="25"aria-valuemin="0" aria-valuemax="100" style="width:100%">

@@ -3,12 +3,12 @@
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>Add Service</h1>
+                <h1>Edit Task</h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li>/</li>
-                        <li>Edit Service</li>
+                        <li>Edit Task</li>
                     </ul>
                 </div>
             </div>
@@ -24,11 +24,11 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            Edit Service
+                                            Edit Task
                                         </div>
                                         <div class="col-md-6">
                                             <a href="{{ route('admin.all_services') }}"
-                                                class="btn btn-primary pull-right">All Services</a>
+                                                class="btn btn-primary pull-right">All Tasks</a>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                             <label for="name" class="control-label col-sm-3">Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="name" name="name" class="form-control"
-                                                    placeholder="Service Name" wire:model="name"
+                                                    placeholder="Task Name" wire:model="name"
                                                     wire:keyup="generateSlug" required />
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                             <label for="slug" class="control-label col-sm-3">Slug</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="slug" name="slug" class="form-control"
-                                                    placeholder="Service Slug" wire:model="slug" required />
+                                                    placeholder="Task Slug" wire:model="slug" required />
                                                 @error('slug')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -79,7 +79,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="service_category_id" class="control-label col-sm-3">Service
+                                            <label for="service_category_id" class="control-label col-sm-3">Task
                                                 Category</label>
                                             <div class="col-sm-9">
                                                 <select id="service_category_id" name="service_category_id"

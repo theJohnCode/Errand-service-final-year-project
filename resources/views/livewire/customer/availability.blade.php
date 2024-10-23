@@ -16,12 +16,12 @@
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>All Availabilities</h1>
+                <h1>All Available Tasks</h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li>/</li>
-                        <li>All Availabilities</li>
+                        <li>All Available Tasks</li>
                     </ul>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                                                 Inactive
                                                             @endif
                                                         </td>
-                                            
+
                                                         <td>
                                                             <a
                                                                 href="{{ route('customer.edit.availability', ['availability_id' => $available->id]) }}">

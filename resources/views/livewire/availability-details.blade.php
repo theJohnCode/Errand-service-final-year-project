@@ -65,7 +65,7 @@
                         <div class="col-md-4">
                             <aside class="widget" style="margin-top: 18px;">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Booking Details</div>
+                                    {{-- <div class="panel-heading">Booking Details</div>
                                     <div class="panel-body">
                                         <table class="table">
                                             <tr>
@@ -100,7 +100,7 @@
                                                 <td><span>&#8358;</span> {{ $total }}</td>
                                             </tr>
                                         </table>
-                                    </div>
+                                    </div> --}}
                                     <div class="panel-footer">
                                         @if (auth()->id() !== $availability->runner->id && auth()->user()->utype == 'ERC')
                                             <a href="{{ URL('errandify', $availability->runner) }}"
@@ -116,7 +116,7 @@
                                 </div>
                             </aside>
                             <aside>
-                                <h3>Related Service</h3>
+                                <h3>Related Taskers</h3>
                                 @if ($related_availability)
                                     <div class="col-md-12 col-sm-6 col-xs-12 bg-dark color-white padding-top-mini"
                                         style="max-width: 360px">
@@ -145,7 +145,7 @@
                                 @else
                                     <div class="col-md-12 col-sm-6 col-xs-12 bg-dark color-white padding-top-mini"
                                         style="max-width: 360px">
-                                        <p>No Related Services</p>
+                                        <p>No Related Taskers</p>
                                     </div>
                                 @endif
                             </aside>

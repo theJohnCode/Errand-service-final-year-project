@@ -36,14 +36,14 @@
 
         <div class="filter-title">
             <div class="title-header">
-                <h2 style="color:#fff;">BOOK A SERVICE</h2>
-                <p class="lead">Book a service at very affordable price, </p>
+                <h2 style="color:#fff;">Find an errand runner</h2>
+                <p class="lead">Find an errand runner at very affordable price, </p>
             </div>
             <div class="filter-header">
                 <form id="sform" action="{{ route('home.search_service') }}" method="POST">
                     @csrf
                     <input type="text" id="search" name="search" required="required"
-                        placeholder="What Services do you want?" class="input-large typeahead" autocomplete="off">
+                        placeholder="What Tasks do you want?" class="input-large typeahead" autocomplete="off">
                     <input type="submit" name="submit" value="Search">
                 </form>
             </div>
@@ -75,7 +75,7 @@
                         @else
                             <ul id="sponsors" class="tooltip-hover">
                                 <li>
-                                    <p class="text-center text-danger">No Services Categories Available Now</p>
+                                    <p class="text-center text-danger">No Tasks Categories Available Now</p>
                                 </li>
                             </ul>
                         @endif
@@ -93,7 +93,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="titles">
-                            <h2>Our <span>Choice</span> of Services</h2>
+                            <h2>Our Choice of Tasks</h2>
                             <i class="fa fa-plane"></i>
                             <hr class="tall">
                         </div>
@@ -155,7 +155,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="titles">
-                            <h2>Available <span>Errand</span> Runners</h2>
+                            <h2>Available Errand Runners</h2>
                             <i class="fa fa-plane"></i>
                             <hr class="tall">
                         </div>
@@ -220,11 +220,11 @@
                             <div class="services-lines-info">
                                 <h2>WELCOME TO {{ strtoupper(config('app.name')) }}</h2>
                                 <p class="lead">
-                                    Book best services at one place.
+                                    Find an errand runner at one place.
                                     <span class="line"></span>
                                 </p>
 
-                                <p>Find a wide variety of home services.</p>
+                                <p>Find a wide variety of home tasks.</p>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -247,7 +247,7 @@
                             @else
                                 <ul id="sponsors" class="tooltip-hover">
                                     <li>
-                                        <p class="text-center text-danger">No Services Categories Available Now</p>
+                                        <p class="text-center text-danger">No Tasks Categories Available Now</p>
                                     </li>
                                 </ul>
                             @endif
@@ -261,7 +261,7 @@
             <div class="container">
                 <div class="row">
                     <div class="titles">
-                        <h2><span>Appliance</span>Services</h2>
+                        <h2><span>Appliance</span>Tasks</h2>
                         <i class="fa fa-plane"></i>
                         <hr class="tall">
                     </div>
@@ -312,7 +312,7 @@
                 @else
                     <ul id="sponsors" class="tooltip-hover">
                         <li>
-                            <p class="text-center text-danger">No Services Categories Available Now</p>
+                            <p class="text-center text-danger">No Tasks Categories Available Now</p>
                         </li>
                     </ul>
                 @endif

@@ -3,12 +3,12 @@
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>Add Service</h1>
+                <h1>Add Task</h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li>/</li>
-                        <li>Add Service</li>
+                        <li>Add Task</li>
                     </ul>
                 </div>
             </div>
@@ -24,11 +24,11 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            Add New Service
+                                            Add New Task
                                         </div>
                                         <div class="col-md-6">
                                             <a href="{{ route('admin.all_services') }}"
-                                                class="btn btn-primary pull-right">All Services</a>
+                                                class="btn btn-primary pull-right">All Tasks</a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="service_category_id" class="control-label col-sm-3">Service
+                                            <label for="service_category_id" class="control-label col-sm-3">Task
                                                 Category</label>
                                             <div class="col-sm-9">
                                                 <select id="service_category_id" name="service_category_id"

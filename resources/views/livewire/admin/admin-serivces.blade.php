@@ -16,12 +16,12 @@
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>All Services</h1>
+                <h1>All Tasks</h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li>/</li>
-                        <li>All Services</li>
+                        <li>All Tasks</li>
                     </ul>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            All Services
+                                            All Tasks
                                         </div>
                                         <div class="col-md-6">
                                             <a href="{{ route('admin.add_service') }}"
@@ -113,7 +113,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td colspan="8" class="text-center text-danger">There is
-                                                            no Services available.</td>
+                                                            no Tasks available.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

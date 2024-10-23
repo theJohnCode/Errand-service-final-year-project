@@ -22,7 +22,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        if ($input['registerAs'] == 'ERR') {
+        if ($input['registerAs'] == 'ERR') { //Register as errand runner (tasker)
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -33,10 +33,10 @@ class CreateNewUser implements CreatesNewUsers
                 'dob' => ['required', 'string', 'date'],
                 'state' => ['required', 'string'],
                 'lga' => ['required', 'string'],
-                'school' => ['required', 'string'],
-                'faculty' => ['required', 'string'],
-                'department' => ['required', 'string'],
-                'level' => ['required', 'integer', 'in:100,200,300,400,500'],
+                'school' => ['nullable', 'string'],
+                'faculty' => ['nullable', 'string'],
+                'department' => ['nullable', 'string'],
+                'level' => ['nullable', 'integer', 'in:100,200,300,400,500'],
                 'password' => $this->passwordRules(),
                 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             ], [
@@ -45,7 +45,7 @@ class CreateNewUser implements CreatesNewUsers
             ])->validate();
         }
 
-        if ($input['registerAs'] == 'ERC') {
+        if ($input['registerAs'] == 'ERC') { //Register as errand client (client)
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -56,10 +56,6 @@ class CreateNewUser implements CreatesNewUsers
                 'dob' => ['required', 'string', 'date'],
                 'state' => ['required', 'string'],
                 'lga' => ['required', 'string'],
-                // 'school' => ['required', 'string'],
-                // 'faculty' => ['nullable', 'string'],
-                // 'department' => ['nullable', 'string'],
-                // 'level' => ['nullable', 'integer', 'in:100,200,300,400,500'],
                 'password' => $this->passwordRules(),
                 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             ], [
@@ -78,10 +74,6 @@ class CreateNewUser implements CreatesNewUsers
             'dob' => $input['dob'],
             'lga' => $input['lga'],
             'state' => $input['state'],
-            // 'school' => $input['school'],
-            // 'faculty' => $input['faculty'],
-            // 'department' => $input['department'],
-            // 'level' => $input['level'],
             'password' => Hash::make($input['password']),
             'utype' => $register_as,
         ]);

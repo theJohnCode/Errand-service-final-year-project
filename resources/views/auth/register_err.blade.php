@@ -165,7 +165,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="school">School</label>
-                                                <select name="school" class="form-control">
+                                                <select name="school" id="school" class="form-control">
                                                     <option>Select School</option>
                                                     <option value="nau"
                                                         {{ old('school') == 'nau' ? 'selected' : '' }}>Nnamdi Azikiwe
@@ -182,7 +182,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="faculty">Faculty</label>
-                                                <input type="text" class="form-control" name="faculty"
+                                                <input type="text" class="form-control" id="faculty" name="faculty"
                                                     value="{{ old('faculty') }}">
                                                 @error('faculty')
                                                     <div class="invalid-feedback">
@@ -197,7 +197,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="department">Department</label>
-                                                <input type="text" class="form-control" name="department"
+                                                <input type="text" class="form-control" id="department" name="department"
                                                     value="{{ old('department') }}">
                                                 @error('department')
                                                     <div class="invalid-feedback">
@@ -209,7 +209,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="level">Current Level</label>
-                                                <input type="number" class="form-control" name="level"
+                                                <input type="number" id="level" class="form-control" name="level"
                                                     value="{{ old('level') }}">
                                                 @error('level')
                                                     <div class="invalid-feedback">
@@ -272,21 +272,35 @@
         </div>
     </section>
 
+
     @push('js')
         <script>
             $(document).ready(function() {
-                $('#register_as').change(function() {
-                    var selectedValue = $(this).val();
-                    if (selectedValue === 'ERR') {
-                        $('#runnerDiv').show();
-                        $('#clientDiv').hide();
-                    } else if (selectedValue === 'ERC') {
-                        $('#clientDiv').show();
-                        $('#runnerDiv').hide();
-                    } else {
-                        $('#clientDiv').hide();
-                        $('#runnerDiv').hide();
+
+                // Function to toggle visibility based on the selected value
+                function toggleFields(selectedValue) {
+                    if (selectedValue === '1') {
+                        $('#school').closest('.col-md-6').show();
+                        $('#faculty').closest('.col-md-6').show();
+                        $('#level').closest('.col-md-6').show();
+                        $('#department').closest('.col-md-6').show();
+                    } else if (selectedValue === '0') {
+                        $('#school').closest('.col-md-6').hide();
+                        $('#faculty').closest('.col-md-6').hide();
+                        $('#level').closest('.col-md-6').hide();
+                        $('#department').closest('.col-md-6').hide();
                     }
+                }
+
+                // Get the value of the selected radio button on page load
+                let selectedValue = $('input[name="is_student"]:checked').val();
+           
+                toggleFields(selectedValue); // Call the function to apply logic on page load
+
+                // Listen for changes on the radio buttons
+                $('input[name="is_student"]').change(function() {
+                    selectedValue = $(this).val();
+                    toggleFields(selectedValue); // Call the function again when the value changes
                 });
             });
         </script>

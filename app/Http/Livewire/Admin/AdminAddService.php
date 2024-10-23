@@ -18,9 +18,6 @@ class AdminAddService extends Component
     public $slug;
     public $tagline;
     public $service_category_id;
-    // public $price;
-    // public $discount;
-    // public $discount_type;
     public $description;
     public $image;
     public $thumbnail;
@@ -55,7 +52,6 @@ class AdminAddService extends Component
             'slug' => 'required',
             'tagline' => 'required',
             'service_category_id' => 'required',
-            // 'price' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
             'thumbnail' => 'required|mimes:jpeg,jpg,png,gif',
@@ -66,9 +62,6 @@ class AdminAddService extends Component
         $service->slug = $this->slug;
         $service->tagline = $this->tagline;
         $service->service_category_id = $this->service_category_id;
-        // $service->price = $this->price;
-        // $service->discount = $this->discount;
-        // $service->discount_type = $this->discount_type;
         $service->description = $this->description;
         $service->posted_by = auth()->id();
 
@@ -82,7 +75,7 @@ class AdminAddService extends Component
 
         $service->save();
         // Set a success toast, with a title
-        toastr()->success('Service Has Been Add Successfully', 'Congrats');
+        toastr()->success('Task Has Been Add Successfully', 'Congrats');
         return redirect()->route('admin.all_services');
     }
 

@@ -3,12 +3,12 @@
         <div class="bg_parallax image_01_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>All Services Categories</h1>
+                <h1>All Tasks Categories</h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li>/</li>
-                        <li>Service Categories</li>
+                        <li>Task Categories</li>
                     </ul>
                 </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row" style="margin-top: -30px;">
                 <div class="titles">
-                    <h2>All <span>Services Categories</span></h2>
+                    <h2>All <span>Tasks Categories</span></h2>
                     <i class="fa fa-plane"></i>
                     <hr class="tall">
                 </div>
@@ -42,7 +42,7 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="col-md-12 text-center text-danger">There are no services available.</p>
+                        <p class="col-md-12 text-center text-danger">There are no tasks available.</p>
                     @endif
                 </div>
             </div>

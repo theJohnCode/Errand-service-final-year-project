@@ -10,7 +10,7 @@
                     {{-- <h3>Errand Service</h3> --}}
                 </a>
             </li>
-            <li> <a href="{{ route('home.service_categories') }}">Service Categories</a></li>
+            <li> <a href="{{ route('home.service_categories') }}">Task Categories</a></li>
 
             @foreach ($categories as $category)
                 <li>
@@ -37,8 +37,10 @@
                         <li class="login-form"> <a href="#" title="Register">My Account (Admin)</a>
                             <ul class="drop-down one-column hover-fade">
                                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                <li><a href="{{ route('admin.service_categories') }}">Service Categories</a></li>
-                                <li><a href="{{ route('admin.all_services') }}">All Services</a></li>
+                                <li><a href="{{ route('admin.service_categories') }}">Task Categories</a></li>
+                                <li><a href="{{ route('admin.all_services') }}">Available Tasks</a></li>
+                                <li><a href="{{ route('admin.errand.runner') }}">Taskers</a></li>
+                                <li><a href="{{ route('admin.errand.client') }}">Clients</a></li>
                                 {{-- <li><a href="{{ route('admin.slider') }}">Manage Sliders</a></li> --}}
                                 {{-- <li><a href="{{ route('admin.contacts') }}">All Contacts</a></li> --}}
                                 <li><a href="{{ route('logout') }}"
@@ -50,8 +52,10 @@
                         <li class="login-form"> <a href="#" title="Register">My Account (Client)</a>
                             <ul class="drop-down one-column hover-fade">
                                 {{-- <li><a href="{{ route('service-provider.dashboard') }}">Dashboard</a></li> --}}
-                                <li><a href="{{ route('admin.all_services') }}">All Services</a></li>
+                                <li><a href="{{ route('admin.all_services') }}">All Tasks</a></li>
+                                <li><a href="{{ route('admin.add_service') }}">Post Tasks</a></li>
                                 <li><a href="{{ route('service-provider.profile') }}">Profile</a></li>
+                                <li><a href="{{ route('service-provider.edit_profile') }}">Edit Profile</a></li>
                                 <li><a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                                 </li>
@@ -61,8 +65,9 @@
                         <li class="login-form"> <a href="#" title="Register">My Account (Tasker)</a>
                             <ul class="drop-down one-column hover-fade">
                                 {{-- <li><a href="{{ route('customer.dashboard') }}">Dashboard</a></li> --}}
+                                <li><a href="{{ route('customer.availability') }}">Available Tasks</a></li>
                                 <li><a href="{{ route('customer.profile') }}">Profile</a></li>
-                                <li><a href="{{ route('customer.availability') }}">Availabilities</a></li>
+                                <li><a href="{{ route('customer.edit_profile') }}">Edit Profile</a></li>
                                 <li><a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                                 </li>
