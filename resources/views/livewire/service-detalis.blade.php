@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="panel-footer">
                                         @if (auth()->id() !== $service->postedBy->id && auth()->user()->utype == 'ERR')
-                                            <a href="{{ URL('errandify', $service->postedBy) }}"
+                                            <a href="{{ route('user', ['id' => $service->postedBy->id, 'task_id' => $service->id]) }}"
                                                 class="btn btn-primary">Book Now
                                             </a>
                                         @else

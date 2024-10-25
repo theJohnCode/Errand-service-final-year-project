@@ -116,7 +116,7 @@
                                             @auth
                                                 @if (auth()->id() !== $featured_service->postedBy->id && in_array(auth()->user()->utype, ['ERC', 'ADM']))
                                                     <div class="content-btn">
-                                                        <a href="{{ URL('errandify', $featured_service->postedBy) }}"
+                                                        <a href="{{ URL('errandify/'. $featured_service->postedBy. '/' . $featured_service->id) }}"
                                                             class="btn btn-primary">Message
                                                         </a>
                                                     </div>
@@ -166,7 +166,7 @@
                                 <div class="col-xs-6 col-sm-4 col-md-3 hsgrids"
                                     style="padding-right: 5px;padding-left: 5px;">
                                     <a class="g-list"
-                                        href="{{ route('home.availability_details', ['availability_id' => $availability->id]) }}">
+                                        href="{{ route('customer.profile', ['user_id' => $availability->runner->id]) }}">
                                         <div class="img-hover">
                                             <img src="{{ asset('storage/users-avatar/' . $availability->runner->avatar) }}"
                                                 alt="{{ $availability->runner->name }}" class="img-responsive">
@@ -180,11 +180,17 @@
                                                         <a href="{{ URL('errandify', $availability->runner->id) }}"
                                                             class="btn btn-primary">Message
                                                         </a>
+                                                        <a href="{{ route('customer.ratings', $availability->runner) }}"
+                                                            class="btn btn-success">Rate User
+                                                        </a>
                                                     </div>
                                                 @else
                                                     <div class="content-btn">
                                                         <a href="{{ route('home.availability_details', ['availability_id' => $availability->id]) }}"
                                                             class="btn btn-primary">View
+                                                        </a>
+                                                        <a href="{{ route('customer.ratings', $availability->runner) }}"
+                                                            class="btn btn-success">Rate User
                                                         </a>
                                                     </div>
                                                 @endif

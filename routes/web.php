@@ -18,6 +18,7 @@ use App\Http\Livewire\Admin\ErrandClient;
 use App\Http\Livewire\Admin\ErrandRunner;
 use App\Http\Livewire\Admin\AdminServices;
 use App\Http\Livewire\AvailabilityDetails;
+use App\Http\Controllers\BookingController;
 use App\Http\Livewire\Admin\AdminAddSlider;
 use App\Http\Controllers\RegisterController;
 use App\Http\Livewire\Admin\AdminAddService;
@@ -31,6 +32,7 @@ use App\Http\Livewire\Admin\AdminServiceCategory;
 use App\Http\Livewire\Admin\AdminServiceByCategory;
 use App\Http\Livewire\Admin\AdminAddServiceCategory;
 use App\Http\Livewire\Admin\AdminEditServiceCategory;
+use App\Http\Livewire\Customer\Rating;
 use App\Http\Livewire\ServiceProvider\ServiceProvider;
 use App\Http\Livewire\ServiceProvider\ServiceProviderProfile;
 use App\Http\Livewire\ServiceProvider\EditServiceProviderProfile;
@@ -41,6 +43,8 @@ Route::get('/service-categories', ServiceCategory::class)->name('home.service_ca
 Route::get('/{category_slug}/service', ServiceByCategory::class)->name('home.service_by_category');
 Route::get('/service/{service_slug}', ServiceDetails::class)->name('home.service_details');
 Route::get('/availability/{availability_id}', AvailabilityDetails::class)->name('home.availability_details');
+Route::post('/create-booking', [BookingController::class, 'store'])->name('create.booking');
+
 
 Route::get('/autocomplete', [SearchService::class, 'autocomplete'])->name('home.autocomplete');
 Route::post('/search-service', [SearchService::class, 'search'])->name('home.search_service');
@@ -92,10 +96,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/customer/availability/add', AddAvailability::class)->name('customer.add.availability');
     Route::get('/customer/availability/edit/{availability_id}', EditAvailability::class)->name('customer.edit.availability');
     Route::get('/customer/dashboard', Customer::class)->name('customer.dashboard');
-    Route::get('/customer/profile', CustomerProfile::class)->name('customer.profile');
+    Route::get('/customer/profile/{user_id?}', CustomerProfile::class)->name('customer.profile');
     Route::get('/customer/profile/edit', [RegisterController::class, 'editUser'])->name('customer.edit_profile');
     Route::put('/customer/profile/{id}', [RegisterController::class, 'updateUser'])->name('customer.update');
+    Route::get('/customer/{user}/ratings', Rating::class)->name('customer.ratings');
 });
+
 
 Route::get('/register-errand-client', [RegisterController::class, 'showErcRegistrationForm'])->name('register.erc');
 

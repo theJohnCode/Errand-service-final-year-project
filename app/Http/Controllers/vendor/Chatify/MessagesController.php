@@ -40,7 +40,7 @@ class MessagesController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index( $id = null)
+    public function index( $id = null, $task_id = null)
     {
         $messenger_color = Auth::user()->messenger_color;
         return view('Chatify::pages.app', [

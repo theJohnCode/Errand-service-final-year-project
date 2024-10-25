@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -73,8 +74,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Service::class, 'posted_by');
     }
+
     public function availabilities()
     {
         return $this->hasMany(Availability::class, 'runner_id');
+    }
+
+    // Ratings that the user has received
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    // Average rating of the user
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating');
     }
 }
