@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row" style="margin-top: -30px;">
                 <div class="titles">
-                    <h2>{{ $serviceCategory->name }} <span>Services</span></h2>
+                    <h2>{{ $serviceCategory->name }} Services</h2>
                     <i class="fa fa-plane"></i>
                     <hr class="tall">
                 </div>
@@ -41,7 +41,7 @@
                                         <div class="info-gallery">
                                             <h3>{{ $service->name }}</h3>
                                             <hr class="separator">
-                                            <p>{{ $service->tagline }}</p>
+                                            <p>{{ $service->description }}</p>
                                             @if (auth()->id() !== $service->postedBy->id && auth()->user()->utype == 'ERR')
                                                 <div class="content-btn">
                                                     <a href="{{ URL('errandify', $service->postedBy) }}"

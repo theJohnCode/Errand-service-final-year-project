@@ -112,11 +112,11 @@
                                         <div class="info-gallery">
                                             <h3>{{ $featured_service->name }}</h3>
                                             <hr class="separator">
-                                            <p>{{ $featured_service->tagline }}</p>
+                                           
                                             @auth
                                                 @if (auth()->id() !== $featured_service->postedBy->id && in_array(auth()->user()->utype, ['ERC', 'ADM']))
                                                     <div class="content-btn">
-                                                        <a href="{{ URL('errandify/'. $featured_service->postedBy. '/' . $featured_service->id) }}"
+                                                        <a href="{{ url('errandify', $featured_service->postedBy) }}"
                                                             class="btn btn-primary">Message
                                                         </a>
                                                     </div>
@@ -196,7 +196,7 @@
                                                 @endif
                                             @else
                                                 <div class="content-btn">
-                                                    <a href="{{ route('home.service_details', ['service_slug' => $featured_service->slug]) }}"
+                                                    <a href="{{ route('home.availability_details', ['availability_id' => $availability->id]) }}"
                                                         class="btn btn-primary">View
                                                     </a>
                                                 </div>

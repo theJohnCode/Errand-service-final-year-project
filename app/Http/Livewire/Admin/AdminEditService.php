@@ -17,7 +17,6 @@ class AdminEditService extends Component
     /* inputs */
     public $name;
     public $slug;
-    public $tagline;
     public $service_category_id;
     public $price;
     public $discount;
@@ -41,7 +40,6 @@ class AdminEditService extends Component
         $service = Service::findOrFail($this->service_id);
         $this->name = $service->name;
         $this->slug = $service->slug;
-        $this->tagline = $service->tagline;
         $this->service_category_id = $service->service_category_id;
         $this->price = $service->price;
         $this->discount = $service->discount;
@@ -57,7 +55,6 @@ class AdminEditService extends Component
         $this->validateOnly($fields, [
             'name' => 'required',
             'slug' => 'required',
-            'tagline' => 'required',
             'service_category_id' => 'required',
             'price' => 'required',
             'description' => 'required'
@@ -80,7 +77,6 @@ class AdminEditService extends Component
         $this->validate([
             'name' => 'required',
             'slug' => 'required',
-            'tagline'=> 'required',
             'service_category_id'=> 'required',
             'price'=> 'required',
             'description'=> 'required'
@@ -100,7 +96,6 @@ class AdminEditService extends Component
         $service = Service::findOrFail($this->service_id);
         $service->name = $this->name;
         $service->slug = $this->slug;
-        $service->tagline = $this->tagline;
         $service->service_category_id = $this->service_category_id;
         $service->price = $this->price;
         $service->discount = $this->discount;

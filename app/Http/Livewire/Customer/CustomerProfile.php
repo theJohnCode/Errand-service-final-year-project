@@ -12,7 +12,7 @@ class CustomerProfile extends Component
 
     public function mount($user_id = null)
     {
-        $user_id ? $this->user_id = $user_id : $this->user_id = Auth::user()->id;
+        $user_id ? $this->user_id = $user_id : $this->user_id = Auth::user('customer')->id;
     }
 
     public function render()

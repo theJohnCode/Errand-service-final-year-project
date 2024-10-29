@@ -16,7 +16,6 @@ class AdminAddService extends Component
     /* inputs */
     public $name;
     public $slug;
-    public $tagline;
     public $service_category_id;
     public $description;
     public $image;
@@ -38,7 +37,6 @@ class AdminAddService extends Component
         $this->validateOnly($fields, [
             'name' => 'required',
             'slug' => 'required',
-            'tagline' => 'required',
             'service_category_id' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
             'thumbnail' => 'required|mimes:jpeg,jpg,png,gif',
@@ -50,7 +48,6 @@ class AdminAddService extends Component
         $this->validate([
             'name' => 'required',
             'slug' => 'required',
-            'tagline' => 'required',
             'service_category_id' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif',
@@ -60,7 +57,6 @@ class AdminAddService extends Component
         $service = new Service();
         $service->name = $this->name;
         $service->slug = $this->slug;
-        $service->tagline = $this->tagline;
         $service->service_category_id = $this->service_category_id;
         $service->description = $this->description;
         $service->posted_by = auth()->id();

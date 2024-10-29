@@ -65,18 +65,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="tagline" class="control-label col-sm-3">Tagline</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" id="tagline" name="tagline" class="form-control"
-                                                    placeholder="tagline" wire:model="tagline" required />
-                                                @error('tagline')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="form-group">
                                             <label for="service_category_id" class="control-label col-sm-3">Task

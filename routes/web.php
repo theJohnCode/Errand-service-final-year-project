@@ -40,8 +40,8 @@ use App\Http\Livewire\ServiceProvider\EditServiceProviderProfile;
 
 Route::get('/', Home::class)->name('home');
 Route::get('/service-categories', ServiceCategory::class)->name('home.service_categories');
-Route::get('/{category_slug}/service', ServiceByCategory::class)->name('home.service_by_category');
-Route::get('/service/{service_slug}', ServiceDetails::class)->name('home.service_details');
+Route::get('/{category_slug}/service', ServiceByCategory::class)->name('home.service_by_category')->middleware('auth');
+Route::get('/service/{service_slug}', ServiceDetails::class)->name('home.service_details')->middleware('auth');
 Route::get('/availability/{availability_id}', AvailabilityDetails::class)->name('home.availability_details');
 Route::post('/create-booking', [BookingController::class, 'store'])->name('create.booking');
 
@@ -97,7 +97,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/customer/availability/edit/{availability_id}', EditAvailability::class)->name('customer.edit.availability');
     Route::get('/customer/dashboard', Customer::class)->name('customer.dashboard');
     Route::get('/customer/profile/{user_id?}', CustomerProfile::class)->name('customer.profile');
-    Route::get('/customer/profile/edit', [RegisterController::class, 'editUser'])->name('customer.edit_profile');
+    Route::get('/customer/edit/profile', [RegisterController::class, 'editUser'])->name('customer.edit_profile');
     Route::put('/customer/profile/{id}', [RegisterController::class, 'updateUser'])->name('customer.update');
     Route::get('/customer/{user}/ratings', Rating::class)->name('customer.ratings');
 });
